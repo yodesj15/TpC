@@ -8,9 +8,18 @@ namespace Tp
 {
     public class Boite : IBoite
     {
-        public string Message { get; private set; }
+        // *******************************************
+        // * Source: chatGPT                         *
+        // * Explication: The question mark symbol   *
+        // * (?) in the code you provided denotes a  *
+        // * nullable reference type. This feature   *
+        // * was introduced in C# 8.0 and allows you *
+        // * to specify whether a reference type can *
+        // * contain a null value or not.            *
+        // *******************************************
+        public string? Message { get; private set; }
 
-         public int Hauteur { get; set; }
+        public int Hauteur { get; set; }
         public int Largeur { get; set; }
 
         private List<string> ListeMots = new List<string>();
@@ -23,12 +32,7 @@ namespace Tp
             Largeur = ListeMots.Max(str => str.Length);
             //MaxLength = FindMaxLenght();
         }
-        public Boite()
-        {
-            
-
-
-        }
+        public Boite() { }
 
         public override string ToString()
         {
