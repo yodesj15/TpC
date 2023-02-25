@@ -32,6 +32,12 @@ namespace Tp
             Largeur = ListeMots.Max(str => str.Length);
             //MaxLength = FindMaxLenght();
         }
+
+        //À vérifier avec Patrice si 2 IBoite max ou plusieurs IBoite
+        public Boite(params IBoite[] boites)
+        {
+
+        }
         public Boite() { }
 
         public override string ToString()
@@ -66,12 +72,12 @@ namespace Tp
 
         public IEnumerator<string> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return ListeMots.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return ListeMots.GetEnumerator();
         }
     }
 }

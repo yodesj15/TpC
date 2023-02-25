@@ -9,7 +9,7 @@ namespace Tp
 {
     internal class ComboVertical : IBoite
     {
-        public ComboVertical(Boite ba, Boite bb)
+        public ComboVertical(IBoite ba, IBoite bb)
         {
         }
 
