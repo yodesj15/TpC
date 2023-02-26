@@ -32,12 +32,13 @@ namespace Tp
             Largeur = ListeMots.Max(str => str.Length);
             //MaxLength = FindMaxLenght();
         }
-
+        public Boite (IBoite boite) { }
+        /*
         //À vérifier avec Patrice si 2 IBoite max ou plusieurs IBoite
         public Boite(params IBoite[] boites)
         {
 
-        }
+        }*/
         public Boite() { }
 
         public override string ToString()
