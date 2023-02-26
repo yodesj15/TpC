@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tp
 {
-    public class Boite : IBoite
+    class Boite : IBoite
     {
         // *******************************************
         // * Source: chatGPT                         *
@@ -22,7 +23,8 @@ namespace Tp
         public int Hauteur { get; set; }
         public int Largeur { get; set; }
 
-        private List<string> ListeMots = new List<string>();
+        public IEnumerateur<string> Enumerateur { get; set; }
+        public List<string> ListeMots { get; private set; }
         public Boite(string msg)
         {
             Message = msg;
@@ -30,15 +32,15 @@ namespace Tp
             ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
             Hauteur = ListeMots.Count;
             Largeur = ListeMots.Max(str => str.Length);
+            Enumerateur = (IEnumerateur<string>) GetEnumerator();
             //MaxLength = FindMaxLenght();
         }
-        public Boite (IBoite boite) { }
-        /*
-        //À vérifier avec Patrice si 2 IBoite max ou plusieurs IBoite
-        public Boite(params IBoite[] boites)
+        public Boite (IBoite boite)
         {
+            Hauteur = boite.Hauteur;
+            Largeur = boite.Largeur;
+        }
 
-        }*/
         public Boite() { }
 
         public override string ToString()
@@ -80,5 +82,7 @@ namespace Tp
         {
             return ListeMots.GetEnumerator();
         }
+
+       
     }
 }

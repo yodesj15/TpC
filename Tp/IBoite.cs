@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Tp
 {
-    public interface IBoite : IEnumerable<string>
+    interface IBoite : IEnumerable<string>
     {
+        IEnumerable<string> Enumerateur { get; }
+        List<string> ListeMots { get; }
+
         int Largeur { get;  }
         int Hauteur { get; }
 

@@ -9,9 +9,13 @@ namespace Tp
 {
     internal class Mono : IBoite
     {
-        public int Largeur => throw new NotImplementedException();
+        public int Largeur { get; private set; }
 
-        public int Hauteur => throw new NotImplementedException();
+        public int Hauteur { get; private set; }
+
+        public List<IEnumerable<string>> lst { get; private set; }
+
+        public IEnumerable<string> Enumerateur {get; private set; }
 
         public IEnumerator<string> GetEnumerator()
         {

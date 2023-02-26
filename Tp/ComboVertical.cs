@@ -11,11 +11,13 @@ namespace Tp
     {
         public ComboVertical(Boite ba, Boite bb)
         {
+            Largeur = Math.Max(ba.Largeur, bb.Largeur);
+            Hauteur = ba.Hauteur + bb.Hauteur;
         }
 
-        public int Largeur => throw new NotImplementedException();
+        public int Largeur { get; private set; }
 
-        public int Hauteur => throw new NotImplementedException();
+        public int Hauteur { get; private set; }
 
         public IEnumerator<string> GetEnumerator()
         {
