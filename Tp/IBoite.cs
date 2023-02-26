@@ -8,7 +8,7 @@ namespace Tp
 {
     public interface IBoite : IEnumerable<string>
     {
-       int Largeur { get;  }
+        int Largeur { get;  }
         int Hauteur { get; }
 
     }
