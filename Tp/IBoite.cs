@@ -22,6 +22,8 @@ namespace Tp
             public string Current => Cur.Message;
             object IEnumerator.Current => throw new NotImplementedException();
 
+            /*public bool HasNext => Cur.Succ == Queue;*/
+
             public Enumerateur(Boite bt) 
             {
                 Cur = new();
