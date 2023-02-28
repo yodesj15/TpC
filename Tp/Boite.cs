@@ -18,12 +18,18 @@ namespace Tp
         // * to specify whether a reference type can *
         // * contain a null value or not.            *
         // *******************************************
-        public string? Message { get; private set; }
+        public string? Message { get; init; } = "";
 
         public int Hauteur { get; set; }
         public int Largeur { get; set; }
 
-        public IEnumerateur<string> Enumerateur { get; set; }
+        public Boite? Succ { get; set; } = null;
+        Boite Tete { get; set; } = null;
+        Boite Queue { get; set; } = null;
+
+        public bool EstVide => Tete == null;
+
+        //public IEnumerateur<string> Enumerateur { get; set; }
         public List<string> ListeMots { get; private set; }
         public Boite(string msg)
         {
@@ -32,7 +38,7 @@ namespace Tp
             ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
             Hauteur = ListeMots.Count;
             Largeur = ListeMots.Max(str => str.Length);
-            Enumerateur = (IEnumerateur<string>) GetEnumerator();
+            //Enumerateur = (IEnumerateur<string>) GetEnumerator();
             //MaxLength = FindMaxLenght();
         }
         public Boite (IBoite boite)
@@ -42,6 +48,16 @@ namespace Tp
         }
 
         public Boite() { }
+        
+        /*
+        public string Afficher(IEnumerable<string> msg)
+        {
+            foreach(string str in msg) 
+            {
+                //...
+            }
+            return "";
+        }*/
 
         public override string ToString()
         {
@@ -66,22 +82,11 @@ namespace Tp
             messageFinal += header;
             return messageFinal;
         }
-      
 
-        //public void Afficher()
-        //{
+        public IEnumerator<string> GetEnumerator() => new IBoite.Enumerateur(this);
 
-        //}
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => throw new NotImplementedException();
 
-        public IEnumerator<string> GetEnumerator()
-        {
-            return ListeMots.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return ListeMots.GetEnumerator();
-        }
 
        
     }

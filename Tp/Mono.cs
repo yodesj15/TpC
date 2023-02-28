@@ -13,9 +13,9 @@ namespace Tp
 
         public int Hauteur { get; private set; }
 
-        public List<IEnumerable<string>> lst { get; private set; }
+        //public List<IEnumerable<string>> lst { get; private set; }
 
-        public IEnumerable<string> Enumerateur {get; private set; }
+        //public IEnumerable<string> Enumerateur {get; private set; }
 
         public IEnumerator<string> GetEnumerator()
         {
