@@ -22,6 +22,7 @@ namespace Tp
 
         //public IEnumerable<string> Enumerateur {get; private set; }
 
+
         public IEnumerator<string> GetEnumerator()
         {
             throw new NotImplementedException();
