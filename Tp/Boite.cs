@@ -18,14 +18,15 @@ namespace Tp
         // * to specify whether a reference type can *
         // * contain a null value or not.            *
         // *******************************************
+        private IBoite.Enumerateur enumerateur;
         public string? Message { get; init; } = "";
 
         public int Hauteur { get; set; }
         public int Largeur { get; set; }
 
         public Boite? Succ { get; set; } = null;
-        Boite Tete { get; set; } = null;
-        Boite Queue { get; set; } = null;
+        Boite? Tete { get; set; } = null;
+        //Boite Queue { get; set; } = null;
 
         public bool EstVide => Tete == null;
 
@@ -34,6 +35,7 @@ namespace Tp
         public Boite(string msg)
         {
             Message = msg;
+            enumerateur = new IBoite.Enumerateur(this);
             char[] separators = new char[] { '\n', '\r' };
             ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
             Hauteur = ListeMots.Count;
@@ -87,7 +89,9 @@ namespace Tp
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => throw new NotImplementedException();
 
-
-       
+        public IBoite.Enumerateur GetEnumerateur()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

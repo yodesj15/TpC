@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tp
 {
-    internal class ComboHorizontal : IBoite,IEnumerateur<string>
+    internal class ComboHorizontal : IBoite
     {
         public int Largeur { get; private set; }
         public List<IEnumerable<string>> lst { get; private set; }
@@ -31,6 +31,11 @@ namespace Tp
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
+        }
+
+        public IBoite.Enumerateur GetEnumerateur()
+        {
+            return new IBoite.Enumerateur(new Boite(this));
         }
     }
 }

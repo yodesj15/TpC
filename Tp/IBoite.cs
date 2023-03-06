@@ -15,6 +15,8 @@ namespace Tp
         int Largeur { get; }
         int Hauteur { get; }
 
+        Enumerateur GetEnumerateur();
+
         class Enumerateur : IEnumerateur<string>
         {
             public Boite Cur { get; set; }

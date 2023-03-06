@@ -19,6 +19,11 @@ namespace Tp
 
         public int Hauteur { get; private set; }
 
+        public IBoite.Enumerateur GetEnumerateur()
+        {
+            return new IBoite.Enumerateur(new Boite(this));
+        }
+
         public IEnumerator<string> GetEnumerator()
         {
             throw new NotImplementedException();
