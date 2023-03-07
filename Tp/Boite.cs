@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tp
 {
-    class Boite : IBoite
+    class Boite : IEnumerable<string>
     {
         // *******************************************
         // * Source: chatGPT                         *
@@ -18,25 +18,22 @@ namespace Tp
         // * to specify whether a reference type can *
         // * contain a null value or not.            *
         // *******************************************
-        private IBoite.Enumerateur enumerateur;
+        //private IBoite.Enumerateur enumerateur;
         public string? Message { get; init; } = "";
 
-        public int Hauteur { get; set; }
-        public int Largeur { get; set; }
-
+        public int Hauteur { get; init; }
+        public int Largeur { get; init; }
         public Boite? Succ { get; set; } = null;
-        Boite? Tete { get; set; } = null;
-        //Boite Queue { get; set; } = null;
 
-        public bool EstVide => Tete == null;
+        private char[] separators = new char[] { '\n', '\r' };
 
         //public IEnumerateur<string> Enumerateur { get; set; }
         public List<string> ListeMots { get; private set; }
         public Boite(string msg)
         {
             Message = msg;
-            enumerateur = new IBoite.Enumerateur(this);
-            char[] separators = new char[] { '\n', '\r' };
+            //enumerateur = new IBoite.Enumerateur(this);
+            
             ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
             Hauteur = ListeMots.Count;
             Largeur = ListeMots.Max(str => str.Length);
@@ -48,6 +45,8 @@ namespace Tp
             Hauteur = boite.Hauteur;
             Largeur = boite.Largeur;
         }
+
+  
 
         public Boite() { }
         
@@ -85,13 +84,13 @@ namespace Tp
             return messageFinal;
         }
 
-        public IEnumerator<string> GetEnumerator() => new IBoite.Enumerateur(this);
+        public IEnumerator<string> GetEnumerator() => throw new NotImplementedException();
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => throw new NotImplementedException();
 
-        public IBoite.Enumerateur GetEnumerateur()
+        /*public IBoite.Enumerateur GetEnumerateur()
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }

@@ -15,35 +15,8 @@ namespace Tp
         int Largeur { get; }
         int Hauteur { get; }
 
-        Enumerateur GetEnumerateur();
-
-        class Enumerateur : IEnumerateur<string>
-        {
-            public Boite Cur { get; set; }
-
-            public string Current => Cur.Message;
-            object IEnumerator.Current => throw new NotImplementedException();
-
-            /*public bool HasNext => Cur.Succ == Queue;*/
-
-            public Enumerateur(Boite bt) 
-            {
-                Cur = new();
-                Cur.Succ = bt;
-            }
-
-            public bool MoveNext()
-            {
-                if(Cur.Succ == null)
-                    return false;
-                Cur = Cur.Succ;
-                return true;
-            }
-
-            public void Reset() => throw new NotImplementedException();
-
-            public void Dispose() { }
-        }
+        List<Boite> lstBts { get; }
+        IEnumerateur<string> GetEnumerateur();
 
     }
 }

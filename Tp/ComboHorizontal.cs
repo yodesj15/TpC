@@ -14,6 +14,8 @@ namespace Tp
         public IEnumerateur<string> enumerateur { get; private set; }
         public int Hauteur { get; private set; }
 
+        public List<Boite> lstBts => throw new NotImplementedException();
+
         public ComboHorizontal(Boite ba, Boite bb)
         {
             Hauteur = Math.Max(ba.Hauteur, bb.Hauteur);
@@ -33,9 +35,42 @@ namespace Tp
             throw new NotImplementedException();
         }
 
-        public IBoite.Enumerateur GetEnumerateur()
+        public IEnumerateur<string> GetEnumerateur()
+        {
+            throw new NotImplementedException();
+        }
+
+        /*public IBoite.Enumerateur GetEnumerateur()
         {
             return new IBoite.Enumerateur(new Boite(this));
+        }*/
+
+        class Enumerateur : IEnumerateur<string>
+        {
+            public Boite Cur { get; set; }
+
+            public string Current => Cur.Message;
+            object IEnumerator.Current => throw new NotImplementedException();
+
+            /*public bool HasNext => Cur.Succ == Queue;*/
+
+            public Enumerateur(Boite bt)
+            {
+                Cur = new();
+                Cur.Succ = bt;
+            }
+
+            public bool MoveNext()
+            {
+                if (Cur.Succ == null)
+                    return false;
+                Cur = Cur.Succ;
+                return true;
+            }
+
+            public void Reset() => throw new NotImplementedException();
+
+            public void Dispose() { }
         }
     }
 }
