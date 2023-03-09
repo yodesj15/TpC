@@ -9,7 +9,6 @@ namespace Tp
 {
      internal class ComboVertical : IBoite
      {
-
         public int Largeur { get; private set; }
 
         public int Hauteur { get; private set; }
@@ -18,14 +17,21 @@ namespace Tp
 
         public IEnumerateur<string> GetEnumerateur() => throw new NotImplementedException();
 
-        List<Boite> IBoite.lstBts => throw new NotImplementedException();
+        public List<Boite> lstBts { get; set; } = new List<Boite>();
 
         public ComboVertical(Boite ba, Boite bb)
         {
             Largeur = Math.Max(ba.Largeur, bb.Largeur);
             Hauteur = ba.Hauteur + bb.Hauteur;
-            
+            lstBts.Add(ba); 
+            lstBts.Add(bb);
+            IEnumerateur<string> enumerateur = GetEnumerateur();
+            do
+            {
+                Message += enumerateur.Current;
+            } while (enumerateur.MoveNext());
         }
+
         /*public IBoite.Enumerateur GetEnumerateur()
         {
             return new IBoite.Enumerateur(new Boite(this));
