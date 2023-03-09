@@ -10,20 +10,39 @@ namespace Tp
     internal class ComboHorizontal : IBoite
     {
         public int Largeur { get; private set; }
-        public List<IEnumerable<string>> lst { get; private set; }
-        public IEnumerateur<string> enumerateur { get; private set; }
+        //public List<IEnumerable<string>> lst { get; private set; }
+        //public IEnumerateur<string> enumerateur { get; private set; }
         public int Hauteur { get; private set; }
 
-        public List<Boite> lstBts => throw new NotImplementedException();
+        public string Message { get; private set; } = "";
+
+        public List<Boite> lstBts { get; set; } = new List<Boite>();
+
+        public IEnumerateur<string> GetEnumerateur() => new Enumerateur(lstBts[0], lstBts[1]);
 
         public ComboHorizontal(Boite ba, Boite bb)
         {
             Hauteur = Math.Max(ba.Hauteur, bb.Hauteur);
             Largeur = ba.Largeur + bb.Largeur;
-            lst = new List<IEnumerable<string>>();
-            //lst.Add();
-            //lst.Add(bb.Message.GetEnumerator().Current);
+            lstBts.Add(ba);
+            lstBts.Add(bb);
+            IEnumerateur<string> enumerateur = GetEnumerateur();
+            do
+            {
+                Message += enumerateur.Current;
+            } while (enumerateur.MoveNext()); 
+
         }
+
+        //public override string ToString()
+        //{
+        //    IEnumerateur<string> enumerateur = GetEnumerateur();
+        //    do
+        //    {
+        //        Message += enumerateur.Current;
+        //    } while (enumerateur.MoveNext());
+        //    return Message;
+        //}
 
         public IEnumerator<string> GetEnumerator()
         {
@@ -31,11 +50,6 @@ namespace Tp
         }
 
         IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerateur<string> GetEnumerateur()
         {
             throw new NotImplementedException();
         }
@@ -49,15 +63,15 @@ namespace Tp
         {
             public Boite Cur { get; set; }
 
-            public string Current => Cur.Message;
+            public string Current => Cur.ToString();
             object IEnumerator.Current => throw new NotImplementedException();
 
             /*public bool HasNext => Cur.Succ == Queue;*/
 
-            public Enumerateur(Boite bt)
+            public Enumerateur(Boite ba, Boite bb)
             {
-                Cur = new();
-                Cur.Succ = bt;
+                Cur = ba;
+                Cur.Succ = bb;
             }
 
             public bool MoveNext()

@@ -9,23 +9,23 @@ namespace Tp
 {
      internal class ComboVertical : IBoite
      {
+
+        public int Largeur { get; private set; }
+
+        public int Hauteur { get; private set; }
+
+        public string Message { get; private set; } = "";
+
+        public IEnumerateur<string> GetEnumerateur() => throw new NotImplementedException();
+
+        List<Boite> IBoite.lstBts => throw new NotImplementedException();
+
         public ComboVertical(Boite ba, Boite bb)
         {
             Largeur = Math.Max(ba.Largeur, bb.Largeur);
             Hauteur = ba.Hauteur + bb.Hauteur;
             
         }
-
-        public int Largeur { get; private set; }
-
-        public int Hauteur { get; private set; }
-
-        int IBoite.Largeur => throw new NotImplementedException();
-
-        int IBoite.Hauteur => throw new NotImplementedException();
-
-        List<Boite> IBoite.lstBts => throw new NotImplementedException();
-
         /*public IBoite.Enumerateur GetEnumerateur()
         {
             return new IBoite.Enumerateur(new Boite(this));
@@ -36,20 +36,11 @@ namespace Tp
             throw new NotImplementedException();
         }
 
-        IEnumerateur<string> IBoite.GetEnumerateur()
-        {
-            throw new NotImplementedException();
-        }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }
 
-        IEnumerator<string> IEnumerable<string>.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
 
         class Enumerateur : IEnumerateur<string>
         {
@@ -78,5 +69,5 @@ namespace Tp
 
             public void Dispose() { }
         }
-    }
+     }
 }

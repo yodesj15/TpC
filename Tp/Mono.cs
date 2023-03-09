@@ -14,6 +14,8 @@ namespace Tp
 
         public int Hauteur { get; private set; }
 
+        public string Message { get; private set; } = "";
+
         public List<Boite> lstBts { get; set; } = new List<Boite>();
 
         public IEnumerateur<string> GetEnumerateur() => new Enumerateur(this);
@@ -23,14 +25,15 @@ namespace Tp
             lstBts.Add(boite);
         }
 
-        public override string ToString()   
-        {
-            IEnumerateur<string> enumerateur = GetEnumerateur();
-            do
-            {
-                return enumerateur.Current;
-            } while (enumerateur.MoveNext());
-        }
+        //public override string ToString()   
+        //{
+        //    IEnumerateur<string> enumerateur = GetEnumerateur();
+        //    do
+        //    {
+        //        Message += enumerateur.Current;
+        //    } while (enumerateur.MoveNext());
+        //    return Message;
+        //}
 
         /*public IBoite.Enumerateur GetEnumerateur()
         {
@@ -56,19 +59,19 @@ namespace Tp
         class Enumerateur : IEnumerateur<string>
         {
             public Boite Cur { get; set; }
-            Boite? Tete { get; set; } = null;
-            Boite? Queue { get; set; } = null;
+            //Boite? Tete { get; set; } = null;
+            //Boite? Queue { get; set; } = null;
 
             public string Current => Cur.ToString();
             object IEnumerator.Current => throw new NotImplementedException();
 
-            public bool EstVide => Tete == null;
+            //public bool EstVide => Tete == null;
 
             /*public bool HasNext => Cur.Succ == Queue;*/
 
             public Enumerateur(IBoite bt)
             {
-                Cur = bt.lstBts[0];
+                Cur = bt.lstBts.First();
                 //Cur.Succ = null;
             }
 

@@ -14,6 +14,7 @@ namespace Tp
 
         int Largeur { get; }
         int Hauteur { get; }
+        string Message { get; }
 
         List<Boite> lstBts { get; }
         IEnumerateur<string> GetEnumerateur();
