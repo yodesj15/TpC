@@ -15,7 +15,7 @@ namespace Tp
 
         public string Message { get; private set; } = "";
 
-        public IEnumerateur<string> GetEnumerateur() => throw new NotImplementedException();
+        public IEnumerateur<string> GetEnumerateur() => new Enumerateur(lstBts[0], lstBts[1]);
 
         public List<Boite> lstBts { get; set; } = new List<Boite>();
 
@@ -57,10 +57,10 @@ namespace Tp
 
             /*public bool HasNext => Cur.Succ == Queue;*/
 
-            public Enumerateur(Boite bt)
+            public Enumerateur(Boite ba, Boite bb)
             {
-                Cur = new();
-                Cur.Succ = bt;
+                Cur = ba;
+                Cur.Succ = bb;
             }
 
             public bool MoveNext()

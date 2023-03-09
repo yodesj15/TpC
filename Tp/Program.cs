@@ -20,14 +20,14 @@ Boite b1 = new(autTexte);
 //Console.WriteLine(b0.GetEnumerator().Current.ToString());
 ComboHorizontal cv = new(b0, b1);
 Console.WriteLine(new Boite(cv));
-//ComboHorizontal ch = new(b0, b1);
+ComboHorizontal ch = new(b0, b1);
 //Console.WriteLine(new Boite(ch));
 //ComboVertical cvplus = new(new Boite(cv), new Boite(ch));
 //Console.WriteLine(new Boite(cvplus));
-//ComboHorizontal chplus = new(new Boite(cv), new Boite(ch));
+ComboHorizontal chplus = new(new Boite(cv), new Boite(ch));
 //Console.WriteLine(new Boite(chplus));
-//ComboVertical cvv = new(new Boite(chplus), new Boite("coucou"));
-//Console.WriteLine(new Boite(cvv));
+ComboVertical cvv = new(new Boite(chplus), new Boite("coucou"));
+Console.WriteLine(new Boite(cvv));
 //Console.WriteLine(new Boite(
 //   new ComboHorizontal(
 //      new Boite("a\nb\nc\nd\ne"),
