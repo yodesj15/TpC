@@ -9,15 +9,9 @@ namespace Tp
 {
     interface IBoite : IEnumerable<string>
     {
-        //IEnumerable<string> Enumerateur { get; }
-        //List<string> ListeMots { get; }
-
+        public IBoite Redimensionner(int largeur, int hauteur);
         int Largeur { get; }
         int Hauteur { get; }
-        //string Message { get; }
-
-        List<Boite> lstBts { get; }
-        IEnumerateur<string> GetEnumerateur();
-
+        IBoite Cloner(IBoite b);
     }
 }

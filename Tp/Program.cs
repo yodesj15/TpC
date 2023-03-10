@@ -2,24 +2,25 @@
 //using Boites; // pas obligé; dans mon cas, c'était utile
 using Tp;
 
-Mono mono = new(new Boite("Allo\nmon chien"));
-Console.WriteLine(new Boite(mono));
+Boite bt = new Boite("Allo\nmon chien");
+Console.WriteLine(bt);
+
 
 //Mono mon = new();
-//Boite b = new();
-//Console.WriteLine(b);
-//Console.WriteLine(new Boite("yo"));
+Boite b = new();
+Console.WriteLine(b);
+Console.WriteLine(new Boite("yo"));
 string texte = @"Man! Hey!!!
 ceci est un test
 multiligne";
 string autTexte = "Ceci\nitou, genre";
 Boite b0 = new(texte);
 Boite b1 = new(autTexte);
-//Console.WriteLine(b0);
-//Console.WriteLine(b1);
+Console.WriteLine(b0);
+Console.WriteLine(b1);
 //Console.WriteLine(b0.GetEnumerator().Current.ToString());
-ComboHorizontal cv = new(b0, b1);
-Console.WriteLine(new Boite(cv));
+//ComboHorizontal cv = new(b0, b1);
+//Console.WriteLine(new Boite(cv));
 //ComboHorizontal ch = new(b0, b1);
 //Console.WriteLine(new Boite(ch));
 //ComboVertical cvplus = new(new Boite(cv), new Boite(ch));

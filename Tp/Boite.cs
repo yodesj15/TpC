@@ -9,86 +9,65 @@ namespace Tp
 {
     class Boite : IEnumerable<string>
     {
-        // *******************************************
-        // * Source: chatGPT                         *
-        // * Explication: The question mark symbol   *
-        // * (?) in the code you provided denotes a  *
-        // * nullable reference type. This feature   *
-        // * was introduced in C# 8.0 and allows you *
-        // * to specify whether a reference type can *
-        // * contain a null value or not.            *
-        // *******************************************
-        //private IBoite.Enumerateur enumerateur;
-        public string Message { get; init; }
-
-        public int Hauteur { get; init; }
-        public int Largeur { get; init; }
-        public Boite? Succ { get; set; } = null;
+        public string Message { get; init; } = "";
 
         private char[] separators = new char[] { '\n', '\r' };
 
-        //public IEnumerateur<string> Enumerateur { get; set; }
-        public List<string> ListeMots { get; private set; }
+        public List<string> ListeMots { get; init; }
+
+        IBoite IB { get; init; }
+
         public Boite(string msg)
         {
             Message = msg;
-            //enumerateur = new IBoite.Enumerateur(this);
-            
             ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
-            Hauteur = ListeMots.Count;
-            Largeur = ListeMots.Max(str => str.Length);
-            //Enumerateur = (IEnumerateur<string>) GetEnumerator();
-            //MaxLength = FindMaxLenght();
+
+            IB = new Mono(ListeMots.Max(str => str.Length), ListeMots.Count);
+
         }
+
         public Boite (IBoite boite)
         {
-            Hauteur = boite.Hauteur;
-            Largeur = boite.Largeur;
-            Message = boite.lstBts[0].Message;
-            //ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
+            IB = boite.Cloner(boite); 
         }
 
-  
-
-        public Boite() { }
-        
-        /*
-        public string Afficher(IEnumerable<string> msg)
+        public Boite() 
         {
-            foreach(string str in msg) 
-            {
-                //...
-            }
-            return "";
-        }*/
+            IB = new Mono(0, 0);
+        }
 
         public override string ToString()
         {
-            string header = '+' + new string('-',Largeur) + '+'+ "\n" ;
-            string messageFinal = header;
-            foreach(string s in ListeMots)
+            string header = '+' + new string('-', IB.Largeur) + '+';
+            string messageFinal = header + "\n";
+
+            if(ListeMots != null)
             {
-                if( s.Length < Largeur)
+                foreach (string s in ListeMots)
                 {
-                    int nb = Largeur - s.Length;
-                    messageFinal += $"|{s}" + new string(' ', nb) + "|\n";
+                    if (s.Length < IB.Largeur)
+                    {
+                        int nb = IB.Largeur - s.Length;
+                        messageFinal += $"|{s}" + new string(' ', nb) + "|\n";
+
+                    }
+                    else
+                    {
+                        messageFinal += $"|{s}|" + "\n";
+
+                    }
 
                 }
-                else
-                {
-                    messageFinal += $"|{s}|" + "\n";
-
-                }
-
             }
 
             messageFinal += header;
             return messageFinal;
         }
 
-        public IEnumerator<string> GetEnumerator() => throw new NotImplementedException();
+        public IEnumerable<string> GetEnumerator() => GetEnumerator();
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => throw new NotImplementedException();
 
+        IEnumerator<string> IEnumerable<string>.GetEnumerator() => throw new NotImplementedException();
     }
 }

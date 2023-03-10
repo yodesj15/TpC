@@ -14,14 +14,31 @@ namespace Tp
 
         public int Hauteur { get; private set; }
 
-        public List<Boite> lstBts { get; set; } = new List<Boite>();
+        //public List<Boite> lstBts { get; set; } = new List<Boite>();
 
-        public IEnumerateur<string> GetEnumerateur() => new Enumerateur(this);
+        //public IEnumerable<string> GetEnumerateur() => new IEnumerable(this);
 
-        public Mono(Boite boite)
+        //public Mono(Boite boite)
+        //{
+        //    Largeur = boite.IB.Largeur;
+        //    Hauteur = boite.IB.Hauteur;
+        //    //lstBts.Add(boite);
+        //}
+
+        public Mono(int largeur, int hauteur)
         {
-            lstBts.Add(boite);
+            Largeur = largeur;
+            Hauteur = hauteur;
         }
+
+        public Mono(IBoite bt)
+        {
+            Largeur = bt.Largeur;
+            Hauteur = bt.Hauteur;
+        }
+
+        public IBoite Cloner(IBoite b) => new Mono(b);
+
 
         //public override string ToString()   
         //{
@@ -54,36 +71,41 @@ namespace Tp
             throw new NotImplementedException();
         }
 
-        class Enumerateur : IEnumerateur<string>
+        public IBoite Redimensionner(int largeur, int hauteur)
         {
-            public Boite Cur { get; set; }
-            //Boite? Tete { get; set; } = null;
-            //Boite? Queue { get; set; } = null;
-
-            public string Current => Cur.ToString();
-            object IEnumerator.Current => throw new NotImplementedException();
-
-            //public bool EstVide => Tete == null;
-
-            /*public bool HasNext => Cur.Succ == Queue;*/
-
-            public Enumerateur(IBoite bt)
-            {
-                Cur = bt.lstBts.First();
-                //Cur.Succ = null;
-            }
-
-            public bool MoveNext()
-            {
-                if (Cur.Succ == null)
-                    return false;
-                Cur = Cur.Succ;
-                return true;
-            }
-
-            public void Reset() => throw new NotImplementedException();
-
-            public void Dispose() { }
+            throw new NotImplementedException();
         }
+
+        //class Enumerateur : IEnumerateur<string>
+        //{
+        //    public Boite Cur { get; set; }
+        //    //Boite? Tete { get; set; } = null;
+        //    //Boite? Queue { get; set; } = null;
+
+        //    public string Current => Cur.ToString();
+        //    object IEnumerator.Current => throw new NotImplementedException();
+
+        //    //public bool EstVide => Tete == null;
+
+        //    /*public bool HasNext => Cur.Succ == Queue;*/
+
+        //    public Enumerateur(IBoite bt)
+        //    {
+        //        Cur = bt.lstBts.First();
+        //        //Cur.Succ = null;
+        //    }
+
+        //    public bool MoveNext()
+        //    {
+        //        if (Cur.Succ == null)
+        //            return false;
+        //        Cur = Cur.Succ;
+        //        return true;
+        //    }
+
+        //    public void Reset() => throw new NotImplementedException();
+
+        //    public void Dispose() { }
+        //}
     }
 }
