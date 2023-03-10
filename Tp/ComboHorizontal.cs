@@ -14,7 +14,7 @@ namespace Tp
         //public IEnumerateur<string> enumerateur { get; private set; }
         public int Hauteur { get; private set; }
 
-        public string Message { get; private set; } = "";
+        //public string Message { get; private set; } = "";
 
         public List<Boite> lstBts { get; set; } = new List<Boite>();
 
@@ -29,7 +29,7 @@ namespace Tp
             IEnumerateur<string> enumerateur = GetEnumerateur();
             do
             {
-                Message += enumerateur.Current;
+                //Message += enumerateur.Current;
             } while (enumerateur.MoveNext()); 
 
         }
@@ -63,7 +63,12 @@ namespace Tp
         {
             public Boite Cur { get; set; }
 
-            public string Current => Cur.ToString();
+            public string Current { get
+                {
+                    string message = null;
+                    return message;
+                } 
+            }
             object IEnumerator.Current => throw new NotImplementedException();
 
             /*public bool HasNext => Cur.Succ == Queue;*/

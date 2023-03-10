@@ -14,8 +14,6 @@ namespace Tp
 
         public int Hauteur { get; private set; }
 
-        public string Message { get; private set; } = "";
-
         public List<Boite> lstBts { get; set; } = new List<Boite>();
 
         public IEnumerateur<string> GetEnumerateur() => new Enumerateur(this);

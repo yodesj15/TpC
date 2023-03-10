@@ -13,7 +13,7 @@ namespace Tp
 
         public int Hauteur { get; private set; }
 
-        public string Message { get; private set; } = "";
+        //public string Message { get; private set; } = "";
 
         public IEnumerateur<string> GetEnumerateur() => new Enumerateur(lstBts[0], lstBts[1]);
 
@@ -28,7 +28,7 @@ namespace Tp
             IEnumerateur<string> enumerateur = GetEnumerateur();
             do
             {
-                Message += enumerateur.Current;
+                //Message += enumerateur.Current;
             } while (enumerateur.MoveNext());
         }
 
@@ -52,7 +52,7 @@ namespace Tp
         {
             public Boite Cur { get; set; }
 
-            public string Current => Cur.Message;
+            public string Current => Cur.ToString();
             object IEnumerator.Current => throw new NotImplementedException();
 
             /*public bool HasNext => Cur.Succ == Queue;*/

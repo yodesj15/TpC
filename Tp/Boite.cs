@@ -19,7 +19,7 @@ namespace Tp
         // * contain a null value or not.            *
         // *******************************************
         //private IBoite.Enumerateur enumerateur;
-        public string Message { get; init; } = "";
+        public string Message { get; init; }
 
         public int Hauteur { get; init; }
         public int Largeur { get; init; }
@@ -44,8 +44,8 @@ namespace Tp
         {
             Hauteur = boite.Hauteur;
             Largeur = boite.Largeur;
-            Message = boite.Message;
-            ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
+            Message = boite.lstBts[0].Message;
+            //ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
   
