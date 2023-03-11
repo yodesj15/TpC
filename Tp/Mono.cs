@@ -10,9 +10,11 @@ namespace Tp
 {
     internal class Mono : IBoite
     {
-        public int Largeur { get; private set; }
+        public int Largeur { get; private set; } = 0;
 
-        public int Hauteur { get; private set; }
+        public int Hauteur { get; private set; } = 0;
+
+        public List<string> lst => throw new NotImplementedException();
 
         //public List<Boite> lstBts { get; set; } = new List<Boite>();
 
@@ -24,6 +26,8 @@ namespace Tp
         //    Hauteur = boite.IB.Hauteur;
         //    //lstBts.Add(boite);
         //}
+
+        public Mono() { }
 
         public Mono(int largeur, int hauteur)
         {

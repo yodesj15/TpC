@@ -28,12 +28,13 @@ namespace Tp
 
         public Boite (IBoite boite)
         {
-            IB = boite.Cloner(boite); 
+            IB = boite.Cloner(boite);
+            ListeMots = IB.lst;
         }
 
         public Boite() 
         {
-            IB = new Mono(0, 0);
+            IB = new Mono();
         }
 
         public override string ToString()
@@ -41,6 +42,7 @@ namespace Tp
             string header = '+' + new string('-', IB.Largeur) + '+';
             string messageFinal = header + "\n";
 
+            //Gestion des boites vides
             if(ListeMots != null)
             {
                 foreach (string s in ListeMots)

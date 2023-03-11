@@ -9,13 +9,14 @@ namespace Tp
 {
     internal class ComboHorizontal : IBoite
     {
-        public int Largeur { get; private set; }
-        //public List<IEnumerable<string>> lst { get; private set; }
-        //public IEnumerateur<string> enumerateur { get; private set; }
-        public int Hauteur { get; private set; }
-        int Espace { get; set; }
+        public int Largeur { get; private set; } = 0;
+        public int Hauteur { get; private set; } = 0;
 
-        public List<string> Liste { get; private set; } = new List<string>();
+        public List<string> lst { get; init; } = new List<string>();
+
+        //int Espace { get; set; }
+
+        //public List<string> Liste { get; private set; } = new List<string>();
 
 
 

@@ -12,6 +12,7 @@ namespace Tp
         public IBoite Redimensionner(int largeur, int hauteur);
         int Largeur { get; }
         int Hauteur { get; }
+        List<string> lst { get; }
         IBoite Cloner(IBoite b);
     }
 }

@@ -9,34 +9,30 @@ namespace Tp
 {
      internal class ComboVertical : IBoite
      {
-        public int Largeur { get; private set; }
+        public int Largeur { get; private set; } = 0;
 
-        public int Hauteur { get; private set; }
-        private int Espace { get; set; }
-
-
+        public int Hauteur { get; private set; } = 0;
+        //private int Espace { get; set; }
         //public string Message { get; private set; } = "";
 
-        //public IEnumerateur<string> GetEnumerateur() => new Enumerateur(lstBts[0], lstBts[1]);
-
-        public List<Boite> lstBts { get; set; } = new List<Boite>();
-
-        public List<string> Liste => throw new NotImplementedException();
+        public List<string> lst { get; init; } = new List<string>();
 
         public ComboVertical(Boite ba, Boite bb)
         {
             Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
             Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length);
-            //Largeur = Math.Max(ba.Largeur, bb.Largeur);
-            //Espace = ba.Hauteur + 1;
-            //Hauteur = Espace + bb.Hauteur ;
-            //lstBts.Add(ba); 
-            //lstBts.Add(bb);
-            //IEnumerateur<string> enumerateur = GetEnumerateur();
-            /*do
-            {
-                //Message += enumerateur.Current;
-            } while (enumerateur.MoveNext());*/
+
+            //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
+            lst.AddRange(ba.ListeMots);
+            lst.Add(new string('-', Largeur));
+            lst.AddRange(bb.ListeMots);
+        }
+
+        public ComboVertical(IBoite boite)
+        {
+            Hauteur = boite.Hauteur;
+            Largeur += boite.Largeur;
+            lst = boite.lst;
         }
 
         /*public IBoite.Enumerateur GetEnumerateur()
@@ -44,25 +40,16 @@ namespace Tp
             return new IBoite.Enumerateur(new Boite(this));
         }*/
 
-        public IEnumerator<string> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerator<string> GetEnumerator() => throw new NotImplementedException();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IBoite Redimensionner(int largeur, int hauteur)
         {
             throw new NotImplementedException();
         }
 
-        public IBoite Cloner(IBoite b)
-        {
-            throw new NotImplementedException();
-        }
+        public IBoite Cloner(IBoite b) => new ComboVertical(b);
 
 
         //class Enumerateur : IEnumerateur<string>
