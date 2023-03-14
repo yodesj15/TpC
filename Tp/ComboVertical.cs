@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace Tp
         public ComboVertical(Boite ba, Boite bb)
         {
             Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
-            Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length);
+            Largeur = Math.Max(ba.ListeMots.Max(str => str.Length) , bb.ListeMots.Max(str => str.Length));
 
             //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
             lst.AddRange(ba.ListeMots);
@@ -28,13 +28,21 @@ namespace Tp
             lst.AddRange(bb.ListeMots);
         }
 
-        public ComboVertical(IBoite boite)
+        protected ComboVertical(IBoite boite)
         {
             Hauteur = boite.Hauteur;
-            Largeur += boite.Largeur;
+            Largeur = boite.Largeur;
             lst = boite.lst;
         }
-
+        public ComboVertical(IBoite boiteA,IBoite boiteB)
+        {
+            Hauteur = Math.Max(boiteA.lst.Count(), boiteB.lst.Count());
+            Largeur = Math.Max(boiteA.lst.Max(str => str.Length), boiteB.lst.Max(str => str.Length));
+            
+            //Hauteur = boite.Hauteur;
+            //Largeur = boite.Largeur;
+            //lst = boite.lst;
+        }
         /*public IBoite.Enumerateur GetEnumerateur()
         {
             return new IBoite.Enumerateur(new Boite(this));
@@ -46,7 +54,10 @@ namespace Tp
 
         public IBoite Redimensionner(int largeur, int hauteur)
         {
-            throw new NotImplementedException();
+            Largeur = largeur; 
+            Hauteur = hauteur; 
+
+            return this;
         }
 
         public IBoite Cloner(IBoite b) => new ComboVertical(b);
