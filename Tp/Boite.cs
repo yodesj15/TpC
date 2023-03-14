@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,14 +26,17 @@ namespace Tp
 
         }
 
-        public Boite (IBoite boite)
+        public Boite(IBoite boite)
         {
             IB = boite.Cloner(boite);
+            IB = boite.Redimensionner(IB.Largeur, IB.Hauteur);
             ListeMots = IB.lst;
         }
 
-        public Boite() 
+        public Boite()
         {
+            ListeMots = new List<string>();
+            ListeMots.Add(Message);
             IB = new Mono();
         }
 
@@ -43,19 +46,30 @@ namespace Tp
             string messageFinal = header + "\n";
 
             //Gestion des boites vides
-            if(ListeMots != null)
+            if (ListeMots != null)
             {
                 foreach (string s in ListeMots)
                 {
-                    if (s.Length < IB.Largeur)
+                    if (s != "")
                     {
-                        int nb = IB.Largeur - s.Length;
-                        messageFinal += $"|{s}" + new string(' ', nb) + "|\n";
+                        //if (s.Contains('-') && s.Length < IB.Largeur)
+                        //{
+                        //    int nb = IB.Largeur - s.Length;
 
-                    }
-                    else
-                    {
-                        messageFinal += $"|{s}|" + "\n";
+                        //    messageFinal += $"|{new string('-', nb)}|" + "\n";
+
+                        //}
+                         if (s.Length < IB.Largeur)
+                        {
+                            int nb = IB.Largeur - s.Length;
+                            messageFinal += $"|{s}" + new string(' ', nb) + "|\n";
+
+                        }
+                        else
+                        {
+                            messageFinal += $"|{s}|" + "\n";
+
+                        }
 
                     }
 
