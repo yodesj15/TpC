@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace Tp
 
         public List<string> lst { get; init; } = new List<string>();
 
-        //int Espace { get; set; }
+        int Espace { get; set; }
 
         //public List<string> Liste { get; private set; } = new List<string>();
 
@@ -25,11 +25,17 @@ namespace Tp
         //public List<Boite> lstBts { get; set; } = new List<Boite>();
 
         //public IEnumerateur<string> GetEnumerateur() => new Enumerateur(lstBts[0], lstBts[1]);
-
+        public ComboHorizontal(IBoite boite)
+        {
+            Hauteur = boite.Hauteur;
+            Largeur = boite.Largeur;
+            lst = boite.lst;
+        }
         public ComboHorizontal(Boite ba, Boite bb)
         {
-            Hauteur = ba.ListeMots.Count() + bb.ListeMots.Count();
-            Largeur = Math.Max(ba.ListeMots.Max(str => str.Length), bb.ListeMots.Max(str => str.Length));
+            Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
+            Espace = ba.ListeMots.Max(str => str.Length) + 1;
+            Largeur = Espace + bb.ListeMots.Max(str => str.Length);
             //Hauteur = Math.Max(ba.Hauteur, bb.Hauteur);
             //Espace = Largeur + 1;
             //Largeur = Espace + Largeur;
@@ -42,6 +48,48 @@ namespace Tp
             //    // Message += enumerateur.Current;
             //} while (enumerateur.MoveNext()); 
 
+            //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
+            if (ba.ListeMots != null && bb.ListeMots != null)
+            {
+                List<string> l = EditList(ba.ListeMots, bb.ListeMots);
+                lst.AddRange(l);
+            }
+
+        }
+        List<string> EditList(List<string> lstBa, List<string> lstBb)
+        {
+            List<string> newList = new List<string>();
+            for (int i = 0; i < lstBa.Count; i++)
+            {
+                int nb = lstBa.Max(str => str.Length) - lstBa[i].Length;
+                string m = lstBa[i] + new string(' ', nb) ;
+                if (lstBb[0] != "" || lstBa[0] != "")
+                {
+                    m += '|';
+                }
+                newList.Add(m);
+
+            }
+
+            for (int i = 0; i < newList.Count; i++)
+            {
+                if (i < lstBb.Count)
+                {
+                    int nb = lstBb.Max(str => str.Length) - lstBb[i].Length;
+                    string m = lstBb[i] + new string(' ', nb) ;
+                    newList[i] += m;
+
+                }
+                else
+                {
+                    newList[i] += new string(' ', lstBb.Max(str => str.Length));
+
+                }
+            }
+
+
+
+            return newList;
         }
 
         //public override string ToString()
@@ -71,14 +119,13 @@ namespace Tp
 
         public IBoite Redimensionner(int largeur, int hauteur)
         {
-            throw new NotImplementedException();
+            Largeur = largeur;
+            Hauteur = hauteur;
+
+            return this;
         }
 
-        public IBoite Cloner(IBoite b)
-        {
-            throw new NotImplementedException();
-        }
-
+        public IBoite Cloner(IBoite b) => new ComboHorizontal(b);
         //IEnumerator<string> IEnumerable<string>.GetEnumerator()
         //{
         //    throw new NotImplementedException();
