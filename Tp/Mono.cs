@@ -14,7 +14,7 @@ namespace Tp
 
         public int Hauteur { get; private set; } = 0;
 
-        public List<string> lst => throw new NotImplementedException();
+        public List<string> lst { get; set; }
 
         //public List<Boite> lstBts { get; set; } = new List<Boite>();
 

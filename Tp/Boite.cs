@@ -35,8 +35,7 @@ namespace Tp
 
         public Boite()
         {
-            ListeMots = new List<string>();
-            ListeMots.Add(Message);
+            ListeMots = new List<string>() { Message };
             IB = new Mono();
         }
 
@@ -59,7 +58,7 @@ namespace Tp
                         //    messageFinal += $"|{new string('-', nb)}|" + "\n";
 
                         //}
-                         if (s.Length < IB.Largeur)
+                        if (s.Length < IB.Largeur)
                         {
                             int nb = IB.Largeur - s.Length;
                             messageFinal += $"|{s}" + new string(' ', nb) + "|\n";
