@@ -19,7 +19,6 @@ namespace Tp
 
         public ComboVertical(Boite ba, Boite bb)
         {
-            //lst = new List<string>();
             Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
             Largeur = Math.Max(ba.ListeMots.Max(str => str.Length) , bb.ListeMots.Max(str => str.Length));
 
