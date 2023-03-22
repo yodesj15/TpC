@@ -15,7 +15,7 @@ namespace Tp
         //private int Espace { get; set; }
         //public string Message { get; private set; } = "";
 
-        public List<string> lst { get; init; } = new List<string>();
+        public List<string> lst { get; set; } = new List<string>();
 
         public ComboVertical(Boite ba, Boite bb)
         {
@@ -23,9 +23,10 @@ namespace Tp
             Largeur = Math.Max(ba.ListeMots.Max(str => str.Length) , bb.ListeMots.Max(str => str.Length));
 
             //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
-            lst.AddRange(ba.ListeMots);
+            lst.AddRange(RedimensionnerListe(ba.ListeMots));
             lst.Add(new string('-', Largeur));
-            lst.AddRange(bb.ListeMots);
+            lst.AddRange(RedimensionnerListe(bb.ListeMots));
+            //lst = EditList(ba.ListeMots, bb.ListeMots);
         }
 
         protected ComboVertical(IBoite boite)
@@ -33,6 +34,21 @@ namespace Tp
             Hauteur = boite.Hauteur;
             Largeur = boite.Largeur;
             lst = boite.lst;
+        }
+
+
+        private List<string> RedimensionnerListe(List<string> lst)
+        {
+            List<string> tempLst = new List<string>();
+
+            foreach(var str in lst)
+            {
+                if(str.Contains('-') && !str.Contains('|'))
+                    tempLst.Add(new string('-', Largeur));
+                else
+                    tempLst.Add(str);
+            }
+            return tempLst;
         }
         //public ComboVertical(IBoite boiteA, IBoite boiteB)
         //{
@@ -55,7 +71,7 @@ namespace Tp
         public IBoite Redimensionner(int largeur, int hauteur)
         {
             Largeur = largeur; 
-            Hauteur = hauteur; 
+            Hauteur = hauteur;
 
             return this;
         }
@@ -93,5 +109,5 @@ namespace Tp
 
         //    public void Dispose() { }
         //}
-     }
+    }
 }

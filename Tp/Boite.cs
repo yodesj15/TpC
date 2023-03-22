@@ -29,7 +29,7 @@ namespace Tp
         public Boite(IBoite boite)
         {
             IB = boite.Cloner(boite);
-            IB = boite.Redimensionner(IB.Largeur, IB.Hauteur);
+            //IB = boite.Redimensionner(IB.Largeur, IB.Hauteur);
             ListeMots = IB.lst;
         }
 

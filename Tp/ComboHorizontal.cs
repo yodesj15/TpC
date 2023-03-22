@@ -51,12 +51,12 @@ namespace Tp
             //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
             if (ba.ListeMots != null && bb.ListeMots != null)
             {
-                List<string> l = EditList(ba.ListeMots, bb.ListeMots);
-                lst.AddRange(l);
+                lst = EditList(ba.ListeMots, bb.ListeMots);
+                //lst.AddRange(l);
             }
 
         }
-        List<string> EditList(List<string> lstBa, List<string> lstBb)
+        private List<string> EditList(List<string> lstBa, List<string> lstBb)
         {
             List<string> newList = new List<string>();
             for (int i = 0; i < lstBa.Count; i++)
