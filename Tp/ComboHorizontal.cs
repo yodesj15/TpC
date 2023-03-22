@@ -36,24 +36,12 @@ namespace Tp
             Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
             Espace = ba.ListeMots.Max(str => str.Length) + 1;
             Largeur = Espace + bb.ListeMots.Max(str => str.Length);
-            //Hauteur = Math.Max(ba.Hauteur, bb.Hauteur);
-            //Espace = Largeur + 1;
-            //Largeur = Espace + Largeur;
-
-            //lstBts.Add(ba);
-            //lstBts.Add(bb);
-            //IEnumerateur<string> enumerateur = GetEnumerateur();
-            //do
-            //{
-            //    // Message += enumerateur.Current;
-            //} while (enumerateur.MoveNext()); 
 
             //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
-            if (ba.ListeMots != null && bb.ListeMots != null)
-            {
-                lst = EditList(ba.ListeMots, bb.ListeMots);
-                //lst.AddRange(l);
-            }
+            //if (ba.ListeMots != null && bb.ListeMots != null)
+            
+            lst = EditList(ba.ListeMots, bb.ListeMots);
+            
 
         }
         private List<string> EditList(List<string> lstBa, List<string> lstBb)
