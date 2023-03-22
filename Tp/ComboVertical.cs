@@ -15,7 +15,7 @@ namespace Tp
         //private int Espace { get; set; }
         //public string Message { get; private set; } = "";
 
-        public List<string> lst { get; set; } = new List<string>();
+        public List<string> lst { get; init; } = new List<string>();
 
         public ComboVertical(Boite ba, Boite bb)
         {
@@ -26,7 +26,6 @@ namespace Tp
             lst.AddRange(RedimensionnerListe(ba.ListeMots));
             lst.Add(new string('-', Largeur));
             lst.AddRange(RedimensionnerListe(bb.ListeMots));
-            //lst = EditList(ba.ListeMots, bb.ListeMots);
         }
 
         protected ComboVertical(IBoite boite)
