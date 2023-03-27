@@ -39,9 +39,11 @@ namespace Tp
 
             //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
             //if (ba.ListeMots != null && bb.ListeMots != null)
-            
+
             lst = EditList(ba.ListeMots, bb.ListeMots);
-            
+            //lst.AddRange(RedimensionnerListe(ba.ListeMots));
+            //lst.Add(new string('-', Largeur));
+            //lst.AddRange(RedimensionnerListe(bb.ListeMots));
 
         }
         private List<string> EditList(List<string> lstBa, List<string> lstBb)
@@ -51,7 +53,7 @@ namespace Tp
             {
                 int nb = lstBa.Max(str => str.Length) - lstBa[i].Length;
                 string m = lstBa[i] + new string(' ', nb) ;
-                if (lstBb[0] != "" || lstBa[0] != "")
+                if (lstBb[i] != "" || lstBa[i] != "")
                 {
                     m += '|';
                 }
@@ -78,6 +80,20 @@ namespace Tp
 
 
             return newList;
+        }
+
+        private List<string> RedimensionnerListe(List<string> lst)
+        {
+            List<string> tempLst = new List<string>();
+
+            foreach (var str in lst)
+            {
+                if (str.Contains('-') && !str.Contains('|'))
+                    tempLst.Add(new string('-', Largeur));
+                else
+                    tempLst.Add(str);
+            }
+            return tempLst;
         }
 
         //public override string ToString()
