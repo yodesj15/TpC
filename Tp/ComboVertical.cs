@@ -31,10 +31,12 @@ namespace Tp
             tempLst.AddRange(RedimensionnerListe(bb.ListeMots));
             Enumerator = tempLst.GetEnumerator();
 
+            lst = tempLst;
+
             //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
-            lst.AddRange(RedimensionnerListe(ba.ListeMots));
-            lst.Add(new string('-', Largeur));
-            lst.AddRange(RedimensionnerListe(bb.ListeMots));
+            //lst.AddRange(RedimensionnerListe(ba.ListeMots));
+            //lst.Add(new string('-', Largeur));
+            //lst.AddRange(RedimensionnerListe(bb.ListeMots));
         }
 
         protected ComboVertical(IBoite boite)

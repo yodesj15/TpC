@@ -45,7 +45,7 @@ namespace Tp
             //if (ba.ListeMots != null && bb.ListeMots != null)
 
             lst = EditList(ba.ListeMots, bb.ListeMots);
-            
+            Enumerator = lst.GetEnumerator();
 
         }
         private List<string> EditList(List<string> lstBa, List<string> lstBb)
@@ -55,7 +55,7 @@ namespace Tp
             {
                 int nb = lstBa.Max(str => str.Length) - lstBa[i].Length;
                 string m = lstBa[i] + new string(' ', nb) ;
-                if (lstBb[i] != "" || lstBa[i] != "")
+                if (lstBa[i] != "" /*|| lstBa[i] != ""*/)
                 {
                     m += '|';
                 }
