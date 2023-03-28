@@ -49,20 +49,20 @@ namespace Tp
             string header = '+' + new string('-', IB.Largeur) + '+';
             string messageFinal = header + "\n";
 
-            //Gestion des boites vides
+            // Marche en debug
             //if (ListeMots != null)
             //{
             //    foreach (string s in ListeMots)
             //    {
             //        if (s != "")
             //        {
-            //            //if (s.Contains('-') && s.Length < IB.Largeur)
-            //            //{
-            //            //    int nb = IB.Largeur - s.Length;
+            //            if (s.Contains('-') && s.Length < IB.Largeur)
+            //            {
+            //                int nb = IB.Largeur - s.Length;
 
-            //            //    messageFinal += $"|{new string('-', nb)}|" + "\n";
+            //                messageFinal += $"|{new string('-', nb)}|" + "\n";
 
-            //            //}
+            //            }
             //            if (s.Length < IB.Largeur)
             //            {
             //                int nb = IB.Largeur - s.Length;
@@ -77,26 +77,29 @@ namespace Tp
 
             //        }
 
+
             //    }
             //}
 
-            if(enumerator != null)
+            //Marche pas en debug
+            if (enumerator != null)
             {
                 enumerator.MoveNext();
                 do
                 {
                     string str = enumerator.Current;
-
-                    if (str.Length < IB.Largeur)
+                    if (str != "" && str is not null)
                     {
-                        int nb = IB.Largeur - str.Length;
-                        messageFinal += $"|{str}" + new string(' ', nb) + "|\n";
-                    }
-                    else
-                        messageFinal += $"|{str}|" + "\n";
+                        if (str.Length < IB.Largeur)
+                        {
+                            int nb = IB.Largeur - str.Length;
+                            messageFinal += $"|{str}" + new string(' ', nb) + "|\n";
+                        }
+                        else
+                            messageFinal += $"|{str}|" + "\n";
 
-                    
-                } while(enumerator.MoveNext());
+                    }
+                } while (enumerator.MoveNext());
             }
 
             messageFinal += header;
