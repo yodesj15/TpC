@@ -20,7 +20,6 @@ namespace Tp
 
         //public List<string> Liste { get; private set; } = new List<string>();
 
-        //test
 
 
         //public string Message { get; private set; } = "";
@@ -42,12 +41,16 @@ namespace Tp
             //Espace = ba.ListeMots.Max(str => str.Length) + 1;
             Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length) + 1;
 
+            List<string> tempLst = new();
+            //tempLst = EditList(ba.ListeMots, bb.ListeMots);
+            Enumerator = tempLst.GetEnumerator();
+
+            lst = tempLst;
             //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
             //if (ba.ListeMots != null && bb.ListeMots != null)
 
-            lst = EditList(ba.ListeMots, bb.ListeMots);
             Enumerator = lst.GetEnumerator();
-
+            lst = tempLst;
         }
         private List<string> EditList(List<string> lstBa, List<string> lstBb)
         {
