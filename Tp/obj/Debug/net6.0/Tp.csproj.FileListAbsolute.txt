@@ -13,21 +13,6 @@ C:\Users\yoan7\OneDrive - Collège Lionel-Groulx\Cegep\Session 6\Vielle techno\C
 C:\Users\yoan7\OneDrive - Collège Lionel-Groulx\Cegep\Session 6\Vielle techno\C#\Tp\obj\Debug\net6.0\Tp.pdb
 C:\Users\yoan7\OneDrive - Collège Lionel-Groulx\Cegep\Session 6\Vielle techno\C#\Tp\obj\Debug\net6.0\Tp.genruntimeconfig.cache
 C:\Users\yoan7\OneDrive - Collège Lionel-Groulx\Cegep\Session 6\Vielle techno\C#\Tp\obj\Debug\net6.0\ref\Tp.dll
-C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Tp.exe
-C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Tp.deps.json
-C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Tp.runtimeconfig.json
-C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Tp.dll
-C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Tp.pdb
-C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.csproj.AssemblyReference.cache
-C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.AssemblyInfoInputs.cache
-C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.AssemblyInfo.cs
-C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.csproj.CoreCompileInputs.cache
-C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.dll
-C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\refint\Tp.dll
-C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.pdb
-C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.genruntimeconfig.cache
-C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\ref\Tp.dll
 C:\Users\yoan7\Source\Repos\TpC\Tp\bin\Debug\net6.0\Tp.exe
 C:\Users\yoan7\Source\Repos\TpC\Tp\bin\Debug\net6.0\Tp.deps.json
 C:\Users\yoan7\Source\Repos\TpC\Tp\bin\Debug\net6.0\Tp.runtimeconfig.json
@@ -43,3 +28,18 @@ C:\Users\yoan7\Source\Repos\TpC\Tp\obj\Debug\net6.0\refint\Tp.dll
 C:\Users\yoan7\Source\Repos\TpC\Tp\obj\Debug\net6.0\Tp.pdb
 C:\Users\yoan7\Source\Repos\TpC\Tp\obj\Debug\net6.0\Tp.genruntimeconfig.cache
 C:\Users\yoan7\Source\Repos\TpC\Tp\obj\Debug\net6.0\ref\Tp.dll
+C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Tp.exe
+C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Tp.deps.json
+C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Tp.runtimeconfig.json
+C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Tp.dll
+C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Tp.pdb
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.csproj.AssemblyReference.cache
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.AssemblyInfoInputs.cache
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.AssemblyInfo.cs
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.csproj.CoreCompileInputs.cache
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.dll
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\refint\Tp.dll
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.pdb
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Tp.genruntimeconfig.cache
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\ref\Tp.dll

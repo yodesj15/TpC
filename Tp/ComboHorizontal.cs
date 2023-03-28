@@ -58,7 +58,9 @@ namespace Tp
             Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
             
             Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length) + 1;
-            if(ListeDoitEtreModifier(ba.ListeMots) || ListeDoitEtreModifier(bb.ListeMots)) 
+
+
+            if (ListeDoitEtreModifier(ba.ListeMots) || ListeDoitEtreModifier(bb.ListeMots))
             {
                 lst = RedimensionnerListe(EditList(ba.ListeMots, bb.ListeMots));
                 Enumerator = lst.GetEnumerator();
@@ -79,6 +81,40 @@ namespace Tp
 
         }
 
+        //Ici j'avais l'intention de faire une fonction qui retourne une liste en utilisant les enum des deux listes
+        // Ce que j'avais en tête c'est de faire: enum1.Current + "|" + enum2.Current pour construire le combo, mais c'est pas complet ici
+        /*private List<string> ReturnList(List<string> lstBa, List<string> lstBb)
+        {
+            var enumeratorBa = lstBa.GetEnumerator();
+            var enumeratorBb = lstBb.GetEnumerator();
+
+            List<string> tempLst = new();
+
+            enumeratorBa.MoveNext();
+            enumeratorBb.MoveNext();
+
+            do
+            {
+                string strBa = enumeratorBa.Current;
+                string strBb = enumeratorBb.Current;
+
+                if (string.IsNullOrEmpty(strBa))
+                    strBa = "";
+                if (string.IsNullOrEmpty(strBb))
+                    strBb = "";
+
+                int espaceBa = lstBa.Max(str => str.Length) - strBa.Length;
+                int espaceBb = lstBb.Max(str => str.Length) - strBb.Length;
+
+                tempLst.Add(strBa + new string(' ', espaceBa) + "|" + strBb + new string(' ', espaceBb));
+
+                enumeratorBa.MoveNext();
+                enumeratorBb.MoveNext();
+            } while (enumeratorBa.Current != null && enumeratorBb.Current != null);
+
+            return tempLst;
+        }*/
+
         private bool ListeDoitEtreModifier(List<string> list)
         {
             foreach (string str in list)
@@ -93,7 +129,7 @@ namespace Tp
 
         private int NbOccurrenceMots(string str,string occ)
         {
-            int count = 0;
+            int count;
             count = str.Split(new string[] { occ }, StringSplitOptions.None).Length - 1;
             return count;
         }
@@ -113,60 +149,56 @@ namespace Tp
 
         private List<string> EditList(List<string> lstBa, List<string> lstBb)
         {
-            List<string> newList = new List<string>();
+            List<string> tempLst = new List<string>();
             for (int i = 0; i < lstBa.Count; i++)
             {
                 int nb = lstBa.Max(str => str.Length) - lstBa[i].Length;
-                string m = lstBa[i] + new string(' ', nb) ;
+                string str = lstBa[i] + new string(' ', nb);
+
                 if (lstBa[i] != "" /*|| lstBa[i] != ""*/)
-                {
-                    m += '|';
-                }
-                newList.Add(m);
+                    str += '|';
+                tempLst.Add(str);
 
             }
 
-            for (int i = 0; i < newList.Count; i++)
+            for (int i = 0; i < tempLst.Count; i++)
             {
                 if (i < lstBb.Count)
                 {
                     int nb = lstBb.Max(str => str.Length) - lstBb[i].Length;
-                    string m = lstBb[i] + new string(' ', nb) ;
-                    newList[i] += m;
+                    tempLst[i] += lstBb[i] + new string(' ', nb);
 
                 }
                 else
-                {
-                    newList[i] += new string(' ', lstBb.Max(str => str.Length));
+                    tempLst[i] += new string(' ', lstBb.Max(str => str.Length));
 
-                }
             }
 
 
 
-            return newList;
+            return tempLst;
         }
 
-        private List<string> RedimensionnerListe(List<string> lsta)
+        private List<string> RedimensionnerListe(List<string> lstA)
         {
-            List<string> newList = new List<string>();
-            int newMax = lsta.Max(str => str.Length);  
-            int nbDésiré = NbOccurenceListe(lsta,"|");
+            List<string> tempLst = new List<string>();
+
+            int nbDésiré = NbOccurenceListe(lstA, "|");
             int dernierIndex = 0;
-            for (int i = 0; i < lsta.Count; i++)
+            for (int i = 0; i < lstA.Count; i++)
             { 
-                if (NbOccurrenceMots(lsta[i], "|") < nbDésiré && i != 0 )
+                if (NbOccurrenceMots(lstA[i], "|") < nbDésiré && i != 0 )
                 {
-                    int index = lsta[dernierIndex].LastIndexOf("|");
-                    string newStr = lsta[i].Substring(0, index) + new string('|',nbDésiré - NbOccurrenceMots(lsta[i],"|")) + lsta[i].Substring(index + 1);
-                    newList.Add(newStr);
+                    int index = lstA[dernierIndex].LastIndexOf("|");
+                    string newStr = lstA[i].Substring(0, index) + new string('|',nbDésiré - NbOccurrenceMots(lstA[i],"|")) + lstA[i].Substring(index + 1);
+                    tempLst.Add(newStr);
                 }
                 else
                 {
-                    newList.Add(lsta[i]);
+                    tempLst.Add(lstA[i]);
 
                 }
-                if(i != 0 && NbOccurrenceMots(lsta[i], "|") > nbDésiré)
+                if(i != 0 && NbOccurrenceMots(lstA[i], "|") > nbDésiré)
                 {
 
                     dernierIndex ++;   
@@ -174,7 +206,7 @@ namespace Tp
                 }
             }
 
-            return newList;
+            return tempLst;
             
         }
 

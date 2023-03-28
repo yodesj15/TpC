@@ -81,7 +81,6 @@ namespace Tp
             //    }
             //}
 
-            //Marche pas en debug
             if (enumerator != null)
             {
                 enumerator.MoveNext();
