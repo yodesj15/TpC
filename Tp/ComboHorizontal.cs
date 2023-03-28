@@ -16,6 +16,8 @@ namespace Tp
 
         int Espace { get; set; }
 
+        public IEnumerator<string> Enumerator { get; init; }
+
         //public List<string> Liste { get; private set; } = new List<string>();
 
 
@@ -29,19 +31,21 @@ namespace Tp
         {
             Hauteur = boite.Hauteur;
             Largeur = boite.Largeur;
+            Enumerator = boite.GetEnumerator();
             lst = boite.lst;
         }
         public ComboHorizontal(Boite ba, Boite bb)
         {
+            
             Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
-            Espace = ba.ListeMots.Max(str => str.Length) + 1;
-            Largeur = Espace + bb.ListeMots.Max(str => str.Length);
+            //Espace = ba.ListeMots.Max(str => str.Length) + 1;
+            Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length) + 1;
 
             //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
             //if (ba.ListeMots != null && bb.ListeMots != null)
             
             lst = EditList(ba.ListeMots, bb.ListeMots);
-            
+            Enumerator = lst.GetEnumerator();
 
         }
         private List<string> EditList(List<string> lstBa, List<string> lstBb)
@@ -90,20 +94,9 @@ namespace Tp
         //    return Message;
         //}
 
-        public IEnumerable<string> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerator<string> GetEnumerator() => Enumerator;
 
-        IEnumerator<string> IEnumerable<string>.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IBoite Redimensionner(int largeur, int hauteur)
         {

@@ -16,6 +16,8 @@ namespace Tp
 
         public List<string> lst { get; set; }
 
+        public IEnumerator<string> Enumerator { get; init; }
+
         //public List<Boite> lstBts { get; set; } = new List<Boite>();
 
         //public IEnumerable<string> GetEnumerateur() => new IEnumerable(this);
@@ -64,16 +66,9 @@ namespace Tp
         //public IEnumerable<string> Enumerateur {get; private set; }
 
 
-        public IEnumerator<string> GetEnumerator()
-        {
-           
-            throw new NotImplementedException();
-        }
+        public IEnumerator<string> GetEnumerator() => Enumerator;
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IBoite Redimensionner(int largeur, int hauteur)
         {

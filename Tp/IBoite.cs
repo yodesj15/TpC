@@ -9,9 +9,10 @@ namespace Tp
 {
     interface IBoite : IEnumerable<string>
     {
-        public IBoite Redimensionner(int largeur, int hauteur);
+        IBoite Redimensionner(int largeur, int hauteur);
         int Largeur { get; }
         int Hauteur { get; }
+        IEnumerator<string> Enumerator { get; }
         List<string> lst { get; }
         IBoite Cloner(IBoite b);
     }

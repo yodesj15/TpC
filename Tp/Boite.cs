@@ -9,6 +9,8 @@ namespace Tp
 {
     class Boite : IEnumerable<string>
     {
+        private IEnumerator<string> enumerator;
+
         public string Message { get; init; } = "";
 
         private char[] separators = new char[] { '\n', '\r' };
@@ -21,6 +23,7 @@ namespace Tp
         {
             Message = msg;
             ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
+            enumerator = ListeMots.GetEnumerator();
 
             IB = new Mono(ListeMots.Max(str => str.Length), ListeMots.Count);
 
@@ -30,12 +33,14 @@ namespace Tp
         {
             IB = boite.Cloner(boite);
             //IB = boite.Redimensionner(IB.Largeur, IB.Hauteur);
+            enumerator = boite.GetEnumerator();
             ListeMots = IB.lst;
         }
 
         public Boite()
         {
             ListeMots = new List<string>() { Message };
+            enumerator = ListeMots.GetEnumerator();
             IB = new Mono();
         }
 
@@ -45,44 +50,61 @@ namespace Tp
             string messageFinal = header + "\n";
 
             //Gestion des boites vides
-            if (ListeMots != null)
+            //if (ListeMots != null)
+            //{
+            //    foreach (string s in ListeMots)
+            //    {
+            //        if (s != "")
+            //        {
+            //            //if (s.Contains('-') && s.Length < IB.Largeur)
+            //            //{
+            //            //    int nb = IB.Largeur - s.Length;
+
+            //            //    messageFinal += $"|{new string('-', nb)}|" + "\n";
+
+            //            //}
+            //            if (s.Length < IB.Largeur)
+            //            {
+            //                int nb = IB.Largeur - s.Length;
+            //                messageFinal += $"|{s}" + new string(' ', nb) + "|\n";
+
+            //            }
+            //            else
+            //            {
+            //                messageFinal += $"|{s}|" + "\n";
+
+            //            }
+
+            //        }
+
+            //    }
+            //}
+
+            if(enumerator != null)
             {
-                foreach (string s in ListeMots)
+                enumerator.MoveNext();
+                do
                 {
-                    if (s != "")
+                    string str = enumerator.Current;
+
+                    if (str.Length < IB.Largeur)
                     {
-                        //if (s.Contains('-') && s.Length < IB.Largeur)
-                        //{
-                        //    int nb = IB.Largeur - s.Length;
-
-                        //    messageFinal += $"|{new string('-', nb)}|" + "\n";
-
-                        //}
-                        if (s.Length < IB.Largeur)
-                        {
-                            int nb = IB.Largeur - s.Length;
-                            messageFinal += $"|{s}" + new string(' ', nb) + "|\n";
-
-                        }
-                        else
-                        {
-                            messageFinal += $"|{s}|" + "\n";
-
-                        }
-
+                        int nb = IB.Largeur - str.Length;
+                        messageFinal += $"|{str}" + new string(' ', nb) + "|\n";
                     }
+                    else
+                        messageFinal += $"|{str}|" + "\n";
 
-                }
+                    
+                } while(enumerator.MoveNext());
             }
 
             messageFinal += header;
             return messageFinal;
         }
 
-        public IEnumerable<string> GetEnumerator() => GetEnumerator();
+        public IEnumerator<string> GetEnumerator() => enumerator;
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => throw new NotImplementedException();
-
-        IEnumerator<string> IEnumerable<string>.GetEnumerator() => throw new NotImplementedException();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

@@ -12,15 +12,24 @@ namespace Tp
         public int Largeur { get; private set; } = 0;
 
         public int Hauteur { get; private set; } = 0;
+
         //private int Espace { get; set; }
         //public string Message { get; private set; } = "";
 
         public List<string> lst { get; init; } = new List<string>();
 
+        public IEnumerator<string> Enumerator { get; init; }
+
         public ComboVertical(Boite ba, Boite bb)
         {
             Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
             Largeur = Math.Max(ba.ListeMots.Max(str => str.Length) , bb.ListeMots.Max(str => str.Length));
+
+            List<string> tempLst = new();
+            tempLst.AddRange(RedimensionnerListe(ba.ListeMots));
+            tempLst.Add(new string('-', Largeur));
+            tempLst.AddRange(RedimensionnerListe(bb.ListeMots));
+            Enumerator = tempLst.GetEnumerator();
 
             //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
             lst.AddRange(RedimensionnerListe(ba.ListeMots));
@@ -32,6 +41,7 @@ namespace Tp
         {
             Hauteur = boite.Hauteur;
             Largeur = boite.Largeur;
+            Enumerator = boite.Enumerator;
             lst = boite.lst;
         }
 
@@ -63,7 +73,7 @@ namespace Tp
             return new IBoite.Enumerateur(new Boite(this));
         }*/
 
-        public IEnumerator<string> GetEnumerator() => lst.GetEnumerator();
+        public IEnumerator<string> GetEnumerator() => Enumerator;
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
