@@ -14,8 +14,6 @@ namespace Tp
 
         public List<string> lst { get; init; } = new List<string>();
 
-        int Espace { get; set; }
-
         public IEnumerator<string> Enumerator { get; init; }
 
         //public List<string> Liste { get; private set; } = new List<string>();
@@ -36,22 +34,83 @@ namespace Tp
         }
         public ComboHorizontal(Boite ba, Boite bb)
         {
-            
+            //v1
+            //Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
+            //Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length) + 1;
+
+
+            //lst = EditList(ba.ListeMots, bb.ListeMots);
+            //Enumerator = lst.GetEnumerator();
+
+            //v2 
+            //Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
+            //Largeur = ba.ListeMots.Max(str => str.Length)+ bb.ListeMots.Max(str => str.Length);
+
+            //List<string> tempLst = new();
+            //tempLst.AddRange(RedimensionnerListe(ba.ListeMots));
+            ////tempLst.Add(new string('-', Largeur));
+            //tempLst.AddRange(RedimensionnerListe(bb.ListeMots));
+            //Enumerator = tempLst.GetEnumerator();
+
+            //lst = tempLst;
+
+            //v3
             Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
-            //Espace = ba.ListeMots.Max(str => str.Length) + 1;
+            
             Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length) + 1;
+            if(ListeDoitEtreModifier(ba.ListeMots) || ListeDoitEtreModifier(bb.ListeMots)) 
+            {
+                lst = RedimensionnerListe(EditList(ba.ListeMots, bb.ListeMots));
+                Enumerator = lst.GetEnumerator();
 
-            List<string> tempLst = new();
-            //tempLst = EditList(ba.ListeMots, bb.ListeMots);
-            Enumerator = tempLst.GetEnumerator();
+            }
+            else
+            {
+                lst = EditList(ba.ListeMots, bb.ListeMots);
+                Enumerator = lst.GetEnumerator();
 
-            lst = tempLst;
-            //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
-            //if (ba.ListeMots != null && bb.ListeMots != null)
+            }
 
-            Enumerator = lst.GetEnumerator();
-            lst = tempLst;
+            //v4
+            //Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
+            //Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length);
+            //List<string> t = Red(ba.ListeMots,bb.ListeMots);
+
+
         }
+
+        private bool ListeDoitEtreModifier(List<string> list)
+        {
+            foreach (string str in list)
+            {
+                if (str.Contains('-') || str.Contains('|'))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private int NbOccurrenceMots(string str,string occ)
+        {
+            int count = 0;
+            count = str.Split(new string[] { occ }, StringSplitOptions.None).Length - 1;
+            return count;
+        }
+
+        private int NbOccurenceListe(List<string> list, string occ)
+        {
+            int max = 0;
+            foreach (string str in list)
+            {
+                if(str.Split(new string[] { occ }, StringSplitOptions.None).Length - 1 > max)
+                {
+                    max = str.Split(new string[] { occ }, StringSplitOptions.None).Length - 1;
+                }
+            }
+            return max;
+        }
+
         private List<string> EditList(List<string> lstBa, List<string> lstBb)
         {
             List<string> newList = new List<string>();
@@ -88,19 +147,37 @@ namespace Tp
             return newList;
         }
 
-        private List<string> RedimensionnerListe(List<string> lst)
+        private List<string> RedimensionnerListe(List<string> lsta)
         {
-            List<string> tempLst = new List<string>();
-
-            foreach (var str in lst)
-            {
-                if (str.Contains('-') && !str.Contains('|'))
-                    tempLst.Add(new string('-', Largeur));
+            List<string> newList = new List<string>();
+            int newMax = lsta.Max(str => str.Length);  
+            int nbDésiré = NbOccurenceListe(lsta,"|");
+            int dernierIndex = 0;
+            for (int i = 0; i < lsta.Count; i++)
+            { 
+                if (NbOccurrenceMots(lsta[i], "|") < nbDésiré && i != 0 )
+                {
+                    int index = lsta[dernierIndex].LastIndexOf("|");
+                    string newStr = lsta[i].Substring(0, index) + new string('|',nbDésiré - NbOccurrenceMots(lsta[i],"|")) + lsta[i].Substring(index + 1);
+                    newList.Add(newStr);
+                }
                 else
-                    tempLst.Add(str);
+                {
+                    newList.Add(lsta[i]);
+
+                }
+                if(i != 0 && NbOccurrenceMots(lsta[i], "|") > nbDésiré)
+                {
+
+                    dernierIndex ++;   
+
+                }
             }
-            return tempLst;
+
+            return newList;
+            
         }
+
 
         //public override string ToString()
         //{

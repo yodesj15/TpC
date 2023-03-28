@@ -2,8 +2,8 @@ using System;
 using Tp;
 
 Boite b = new();
-Console.WriteLine(b);
-Console.WriteLine(new Boite("yo"));
+//Console.WriteLine(b);
+//Console.WriteLine(new Boite("yo"));
 string texte = @"Man! Hey!!!
 ceci est un test
 multiligne";
