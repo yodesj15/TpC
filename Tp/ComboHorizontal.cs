@@ -60,15 +60,15 @@ namespace Tp
             Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length) + 1;
 
 
-            if (ListeDoitEtreModifier(ba.ListeMots) || ListeDoitEtreModifier(bb.ListeMots))
+            if (ContientCombo(ba.ListeMots) || ContientCombo(bb.ListeMots))
             {
-                lst = RedimensionnerListe(EditList(ba.ListeMots, bb.ListeMots));
+                lst = RedimensionnerListe(GetComboList(ba.ListeMots, bb.ListeMots));
                 Enumerator = lst.GetEnumerator();
 
             }
             else
             {
-                lst = EditList(ba.ListeMots, bb.ListeMots);
+                lst = GetComboList(ba.ListeMots, bb.ListeMots);
                 Enumerator = lst.GetEnumerator();
 
             }
@@ -81,12 +81,18 @@ namespace Tp
 
         }
 
-        //Ici j'avais l'intention de faire une fonction qui retourne une liste en utilisant les enum des deux listes
-        // Ce que j'avais en tête c'est de faire: enum1.Current + "|" + enum2.Current pour construire le combo, mais c'est pas complet ici
-        /*private List<string> ReturnList(List<string> lstBa, List<string> lstBb)
+        private List<string> GetComboList(List<string> lstBa, List<string> lstBb)
         {
             var enumeratorBa = lstBa.GetEnumerator();
             var enumeratorBb = lstBb.GetEnumerator();
+
+            string strBa;
+            string strBb;
+
+            int maxLargeurBa = lstBa.Max(str => str.Length);
+            int maxLargeurBb = lstBb.Max(str => str.Length);
+            int nbEspaceBa = 0;
+            int nbEspaceBb = 0;
 
             List<string> tempLst = new();
 
@@ -95,34 +101,47 @@ namespace Tp
 
             do
             {
-                string strBa = enumeratorBa.Current;
-                string strBb = enumeratorBb.Current;
+                strBa = enumeratorBa.Current;
+                strBb = enumeratorBb.Current;
 
                 if (string.IsNullOrEmpty(strBa))
-                    strBa = "";
+                {
+                    nbEspaceBa = 0;
+                    strBa = new string(' ', maxLargeurBa);
+                }
+                else
+                    nbEspaceBa = maxLargeurBa - strBa.Length;
+
                 if (string.IsNullOrEmpty(strBb))
-                    strBb = "";
+                {
+                    nbEspaceBb = 0;
+                    strBb = new string(' ', maxLargeurBb);
+                }
+                else
+                    nbEspaceBb = maxLargeurBb - strBb.Length;
 
-                int espaceBa = lstBa.Max(str => str.Length) - strBa.Length;
-                int espaceBb = lstBb.Max(str => str.Length) - strBb.Length;
-
-                tempLst.Add(strBa + new string(' ', espaceBa) + "|" + strBb + new string(' ', espaceBb));
+                //Gestion boites vides
+                if(string.IsNullOrEmpty(strBa) && string.IsNullOrEmpty(strBb))
+                {
+                    tempLst.Add(strBa + strBb);
+                }
+                else
+                    tempLst.Add(strBa + new string(' ', nbEspaceBa) + "|" + strBb + new string(' ', nbEspaceBb));
 
                 enumeratorBa.MoveNext();
                 enumeratorBb.MoveNext();
-            } while (enumeratorBa.Current != null && enumeratorBb.Current != null);
+            } while (enumeratorBa.Current != null || enumeratorBb.Current != null);
 
             return tempLst;
-        }*/
+        }
 
-        private bool ListeDoitEtreModifier(List<string> list)
+        private bool ContientCombo(List<string> list)
         {
             foreach (string str in list)
             {
                 if (str.Contains('-') || str.Contains('|'))
-                {
                     return true;
-                }
+                
             }
             return false;
         }
@@ -147,37 +166,38 @@ namespace Tp
             return max;
         }
 
-        private List<string> EditList(List<string> lstBa, List<string> lstBb)
-        {
-            List<string> tempLst = new List<string>();
-            for (int i = 0; i < lstBa.Count; i++)
-            {
-                int nb = lstBa.Max(str => str.Length) - lstBa[i].Length;
-                string str = lstBa[i] + new string(' ', nb);
+        
+        //private List<string> EditList(List<string> lstBa, List<string> lstBb)
+        //{
+        //    List<string> tempLst = new List<string>();
+        //    for (int i = 0; i < lstBa.Count; i++)
+        //    {
+        //        int nb = lstBa.Max(str => str.Length) - lstBa[i].Length;
+        //        string str = lstBa[i] + new string(' ', nb);
 
-                if (lstBa[i] != "" /*|| lstBa[i] != ""*/)
-                    str += '|';
-                tempLst.Add(str);
+        //        if (lstBa[i] != "" /*|| lstBa[i] != ""*/)
+        //            str += '|';
+        //        tempLst.Add(str);
 
-            }
+        //    }
 
-            for (int i = 0; i < tempLst.Count; i++)
-            {
-                if (i < lstBb.Count)
-                {
-                    int nb = lstBb.Max(str => str.Length) - lstBb[i].Length;
-                    tempLst[i] += lstBb[i] + new string(' ', nb);
+        //    for (int i = 0; i < tempLst.Count; i++)
+        //    {
+        //        if (i < lstBb.Count)
+        //        {
+        //            int nb = lstBb.Max(str => str.Length) - lstBb[i].Length;
+        //            tempLst[i] += lstBb[i] + new string(' ', nb);
 
-                }
-                else
-                    tempLst[i] += new string(' ', lstBb.Max(str => str.Length));
+        //        }
+        //        else
+        //            tempLst[i] += new string(' ', lstBb.Max(str => str.Length));
 
-            }
+        //    }
 
 
 
-            return tempLst;
-        }
+        //    return tempLst;
+        //}
 
         private List<string> RedimensionnerListe(List<string> lstA)
         {

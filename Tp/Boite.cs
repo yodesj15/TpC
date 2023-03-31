@@ -87,7 +87,7 @@ namespace Tp
                 do
                 {
                     string str = enumerator.Current;
-                    if (str != "" && str is not null)
+                    if (!string.IsNullOrEmpty(str))
                     {
                         if (str.Length < IB.Largeur)
                         {
@@ -99,6 +99,9 @@ namespace Tp
 
                     }
                 } while (enumerator.MoveNext());
+
+                if (IB.Largeur == 0)
+                    messageFinal += "||\n";
             }
 
             messageFinal += header;
