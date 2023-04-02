@@ -70,10 +70,10 @@ namespace Tp
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public IBoite Redimensionner(int largeur, int hauteur)
-        {
-            throw new NotImplementedException();
-        }
+        //public IBoite Redimensionner(int largeur, int hauteur)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         //class Enumerateur : IEnumerateur<string>
         //{

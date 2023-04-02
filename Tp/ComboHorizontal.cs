@@ -245,13 +245,13 @@ namespace Tp
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public IBoite Redimensionner(int largeur, int hauteur)
-        {
-            Largeur = largeur;
-            Hauteur = hauteur;
+        //public IBoite Redimensionner(int largeur, int hauteur)
+        //{
+        //    Largeur = largeur;
+        //    Hauteur = hauteur;
 
-            return this;
-        }
+        //    return this;
+        //}
 
         public IBoite Cloner(IBoite b) => new ComboHorizontal(b);
         //IEnumerator<string> IEnumerable<string>.GetEnumerator()

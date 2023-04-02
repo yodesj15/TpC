@@ -9,7 +9,7 @@ namespace Tp
 {
     interface IBoite : IEnumerable<string>
     {
-        IBoite Redimensionner(int largeur, int hauteur);
+        //IBoite Redimensionner(int largeur, int hauteur);
         int Largeur { get; }
         int Hauteur { get; }
         IEnumerator<string> Enumerator { get; }
