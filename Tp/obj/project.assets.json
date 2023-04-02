@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\acarl\\source\\repos\\TpC\\Tp\\Tp.csproj",
-      "projectName": "Tp",
-      "projectPath": "C:\\Users\\acarl\\source\\repos\\TpC\\Tp\\Tp.csproj",
+      "projectUniqueName": "C:\\Users\\acarl\\source\\repos\\TpC\\Tp\\Boites.csproj",
+      "projectName": "Boites",
+      "projectPath": "C:\\Users\\acarl\\source\\repos\\TpC\\Tp\\Boites.csproj",
       "packagesPath": "C:\\Users\\acarl\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\acarl\\source\\repos\\TpC\\Tp\\obj\\",
       "projectStyle": "PackageReference",
