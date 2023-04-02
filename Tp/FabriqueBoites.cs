@@ -11,7 +11,7 @@ namespace Tp
 
         private static char[] separators = new char[] { '\n', '\r'};
 
-        internal IBoite Creer(string flux)
+        internal Boite Creer(string flux)
         {
             string[] tempTab = flux.Split(separators);
 

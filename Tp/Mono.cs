@@ -32,11 +32,6 @@ namespace Tp
 
         public Mono() { }
 
-        public Mono(string msg)
-        {
-            Enumerator = new Boite(msg).GetEnumerator();
-        }
-
         public Mono(int largeur, int hauteur)
         {
             Largeur = largeur;
