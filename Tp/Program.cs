@@ -53,5 +53,5 @@ using Tp;
 //   new Boite(new ComboVertical(new Boite(), new Boite("Yap")))
 //);
 
-var p = new FabriqueBoites().Creer("mono J'aime mon \"prof\"");
+var p = new FabriqueBoites().Creer("cv\nmono J'aime mon \"prof\"\nmono moi itou");
 Console.Write(p);
