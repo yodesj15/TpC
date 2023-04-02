@@ -1,0 +1,15 @@
+C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Boites.exe
+C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Boites.deps.json
+C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Boites.runtimeconfig.json
+C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Boites.dll
+C:\Users\acarl\source\repos\TpC\Tp\bin\Debug\net6.0\Boites.pdb
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Boites.csproj.AssemblyReference.cache
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Boites.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Boites.AssemblyInfoInputs.cache
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Boites.AssemblyInfo.cs
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Boites.csproj.CoreCompileInputs.cache
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Boites.dll
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\refint\Boites.dll
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Boites.pdb
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\Boites.genruntimeconfig.cache
+C:\Users\acarl\source\repos\TpC\Tp\obj\Debug\net6.0\ref\Boites.dll

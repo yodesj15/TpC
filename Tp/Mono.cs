@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,6 +32,11 @@ namespace Tp
 
         public Mono() { }
 
+        public Mono(string msg)
+        {
+            Enumerator = new Boite(msg).GetEnumerator();
+        }
+
         public Mono(int largeur, int hauteur)
         {
             Largeur = largeur;
@@ -41,10 +47,10 @@ namespace Tp
         {
             Largeur = bt.Largeur;
             Hauteur = bt.Hauteur;
+            Enumerator = bt.Enumerator;
         }
 
         public IBoite Cloner(IBoite b) => new Mono(b);
-
 
         //public override string ToString()   
         //{

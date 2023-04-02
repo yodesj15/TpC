@@ -23,9 +23,10 @@ namespace Tp
         {
             Message = msg;
             ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
-            enumerator = ListeMots.GetEnumerator();
+            //enumerator = ListeMots.GetEnumerator();
 
             IB = new Mono(ListeMots.Max(str => str.Length), ListeMots.Count);
+            enumerator = IB.GetEnumerator();
 
         }
 
