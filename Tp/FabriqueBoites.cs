@@ -20,16 +20,10 @@ namespace Boites
             switch (tempTab[0])
             {
                 case "cv":
-                    string str = tempTab[1];
-                    if (!str.Contains("cv") || !str.Contains("ch"))
-                        return new Boite(CreerCombo(tempTab, 1));
-                    return new Boite(CreerCombo(tempTab, 1));
+                    return new Boite(CreerComboVertical(tempTab, 1));
 
                 case "ch":
-                    string s = tempTab[1];
-                    if (!s.Contains("cv") || !s.Contains("ch"))
-                        return new Boite(CreerCombo(tempTab, 1));
-                    return new Boite(CreerCombo(tempTab, 1));
+                    return new Boite(CreerComboHorizontal(tempTab, 1));
 
                 default:
                     return new Boite(tempTab[0].Substring(5));
@@ -38,63 +32,117 @@ namespace Boites
             throw new InvalidFluxException();
         }
 
-        private IBoite CreerCombo(string[] tab, int startIndex)
+        private IBoite CreerComboHorizontal(string[] tab, int index)
         {
-            string typeBoite = tab[0];
-            List<IBoite> combos = new List<IBoite>(2);
+            IBoite ch = null;
+            int indexBt = 0;
+            int indexCh = 0;
 
-            #region Vérifier si combo dans combo
-            for (int i = startIndex; i < tab.Length; ++i)
+            for(int i = index; i < tab.Length; ++i)
             {
-                string str = tab[i];
-                if (str.Contains("cv"))
-                {
-                    string msg1 = tab[i + 1].Substring(5);
-                    string msg2 = tab[i + 2].Substring(5);
-                    combos.Add(new ComboVertical(new Boite(msg1), new Boite(msg2)));
-                }
-
-                if (str.Contains("ch"))
-                {
-                    string msg1 = tab[i + 1].Substring(5);
-                    string msg2 = tab[i + 2].Substring(5);
-                    combos.Add(new ComboHorizontal(new Boite(msg1), new Boite(msg2)));
-                }
-            }
-            #endregion
-
-            #region Création du combo
-            if (typeBoite == "cv")
-            {
-                if (combos.Count != 0)
-                {
-                    if (combos.Count == 1)
-                    {
-                        //Faire la modif dans ce bloc
-                        string msg = tab[tab.Length - 1].Substring(5);
-                        return new ComboVertical(new Boite(combos[0]), new Boite(msg));
-                    }
-                    return new ComboVertical(new Boite(combos[0]), new Boite(combos[1]));
-                }
-                return new ComboVertical(new Boite(tab[startIndex].Substring(5)), new Boite(tab[startIndex + 1].Substring(5)));
+                if (tab[i] == "cv")
+                    CreerComboVertical(tab, i);
+                else if (tab[i] == "ch")
+                    indexCh = i;
+                else
+                    indexBt = i;
             }
 
-            else if (typeBoite == "ch")
+            if(indexBt != 0 && indexCh != 0)
             {
-                if (combos.Count != 0)
-                {
-                    if (combos.Count == 1)
-                    {
-                        //Faire la modif aussi dans ce bloc
-                        string msg = tab[tab.Length - 1].Substring(5);
-                        return new ComboHorizontal(new Boite(combos[0]), new Boite(msg));
-                    }
-                    return new ComboHorizontal(new Boite(combos[0]), new Boite(combos[1]));
-                }
-                return new ComboHorizontal(new Boite(tab[startIndex].Substring(5)), new Boite(tab[startIndex + 1].Substring(5)));
+                string msg1 = tab[indexCh + 1].Substring(5);
+                string msg2 = tab[indexCh + 2].Substring(5);
+                ch = new ComboHorizontal(new Boite(msg1), new Boite(msg2));
+
+                if (indexBt < indexCh)
+                    ch = new ComboHorizontal(new Boite(tab[indexBt]), new Boite(ch));
+                else
+                    ch = new ComboHorizontal(new Boite(ch), new Boite(tab[indexBt]));
             }
-            #endregion
-            throw new InvalidComboTypeException();
+            return ch;
         }
+
+        private IBoite CreerComboVertical(string[] tab, int index)
+        {
+            IBoite cv = null;
+            int indexBt = 0;
+            int indexCv = 0;
+
+            for (int i = index; i < tab.Length; ++i)
+            {
+                if (tab[i] == "cv")
+                    indexCv = i;
+                else if (tab[i] == "ch")
+                    CreerComboHorizontal(tab, i);
+                else
+                    indexBt = i;
+            }
+
+            if (indexBt != 0 && indexCv != 0)
+            {
+                string msg1 = tab[indexCv + 1].Substring(5);
+                string msg2 = tab[indexCv + 2].Substring(5);
+                cv = new ComboVertical(new Boite(msg1), new Boite(msg2));
+
+                if (indexBt < indexCv)
+                    cv = new ComboVertical(new Boite(tab[indexBt]), new Boite(cv));
+                else
+                    cv = new ComboVertical(new Boite(cv), new Boite(tab[indexBt]));
+            }
+            return cv;
+        }
+
+        //private IBoite CreerCombo(string[] tab, int startIndex)
+        //{
+        //    string typeBoite = tab[0];
+
+        //    List<IBoite> combos = new(2);
+
+        //    #region Vérifier si combo dans combo
+        //    for (int i = startIndex; i < tab.Length; ++i)
+        //    {
+
+        //        if (tab[i].Contains("cv"))
+        //            combos.Add(CreerComboVertical(tab, i));
+
+        //        if (tab[i].Contains("ch"))
+        //            combos.Add(CreerComboHorizontal(tab, i));
+        //    }
+        //    #endregion
+
+        //    #region Création du combo
+        //    if (typeBoite == "cv")
+        //    {
+        //        if (combos.Count != 0)
+        //        {
+        //            if (combos.Count == 1)
+        //            {
+        //                //Faire la modif dans ce bloc
+                        
+        //                string msg = tab[tab.Length - 1].Substring(5);
+        //                return new ComboVertical(new Boite(combos[0]), new Boite(msg));
+        //            }
+        //            return new ComboVertical(new Boite(combos[0]), new Boite(combos[1]));
+        //        }
+        //        return new ComboVertical(new Boite(tab[startIndex].Substring(5)), new Boite(tab[startIndex + 1].Substring(5)));
+        //    }
+
+        //    else if (typeBoite == "ch")
+        //    {
+        //        if (combos.Count != 0)
+        //        {
+        //            if (combos.Count == 1)
+        //            {
+        //                //Faire la modif aussi dans ce bloc
+        //                string msg = tab[tab.Length - 1].Substring(5);
+        //                return new ComboHorizontal(new Boite(combos[0]), new Boite(msg));
+        //            }
+        //            return new ComboHorizontal(new Boite(combos[0]), new Boite(combos[1]));
+        //        }
+        //        return new ComboHorizontal(new Boite(tab[startIndex].Substring(5)), new Boite(tab[startIndex + 1].Substring(5)));
+        //    }
+        //    #endregion
+        //    throw new InvalidComboTypeException();
+        //}
     }
 }
