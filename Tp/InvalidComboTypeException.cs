@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Boites
 {
-    interface IVisitable
+    class InvalidComboTypeException : Exception
     {
     }
 }
