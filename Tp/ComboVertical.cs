@@ -88,6 +88,11 @@ namespace Boites
         //}
 
         public IBoite Cloner(IBoite b) => new ComboVertical(b);
+        
+         public void Accepter(IVisiteur<IBoite> viz)
+        {
+            throw new NotImplementedException();
+        }
 
 
         //class Enumerateur : IEnumerateur<string>
