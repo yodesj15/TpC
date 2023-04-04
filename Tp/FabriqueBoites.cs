@@ -19,6 +19,9 @@ namespace Boites
         {
             string[] tempTab = flux.Split(separators);
 
+            if (string.IsNullOrEmpty(tempTab[0]))
+                throw new InvalidFluxException();
+
             switch (tempTab[0])
             {
                 case "cv":
@@ -30,8 +33,6 @@ namespace Boites
                 default:
                     return new Boite(tempTab[0].Substring(5));
             }
-
-            throw new InvalidFluxException();
         }
 
         private IBoite CreerComboVertical(string[] tab, int posMsg1, int posMsg2)

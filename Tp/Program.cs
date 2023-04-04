@@ -63,5 +63,5 @@ using Boites;
 //Console.WriteLine(p);
 ////p = new FabriqueBoites().Creer("ch\ncv\nmc\nmono J'aime mon \"prof\"\nmono moi itou\nmono eh ben");
 
-var p = new FabriqueBoites().Creer("ch\nmono J'aime mon \"prof\"\nmono moi itou\nmono eh ben");
+var p = new FabriqueBoites().Creer("");
 Console.Write(p);
