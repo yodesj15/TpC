@@ -51,6 +51,7 @@ namespace Boites
         private IBoite CreerCombo(string[] tab, int startIndex, string typeBoite)
         {
             List<Boite> boites = new(2);
+            IBoite combo = null;
 
             for (int i = startIndex; i < tab.Length; ++i)
             {
@@ -69,11 +70,11 @@ namespace Boites
             }
 
             if (typeBoite == "cv")
-                return new ComboVertical(boites[0], boites[1]);
+                combo = new ComboVertical(boites[0], boites[1]);
 
             else if (typeBoite == "ch")
-                return new ComboHorizontal(boites[0], boites[1]);
-
+                combo = new ComboHorizontal(boites[0], boites[1]);
+            return combo;
         }
     }
 }
