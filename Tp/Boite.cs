@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Boites
 {
-    class Boite : IEnumerable<string>
+    class Boite : IEnumerable<string>, IVisitable<IBoite>
     {
         private IEnumerator<string> enumerator;
 
@@ -111,5 +111,13 @@ namespace Boites
         public IEnumerator<string> GetEnumerator() => enumerator;
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public void Accepter(IVisiteur<IBoite> viz)
+        {
+            viz.Entrer();
+            Action a = delegate() { Console.WriteLine("allo"); };
+            viz.Visiter(IB, a);
+            viz.Sortir();
+        }
     }
 }

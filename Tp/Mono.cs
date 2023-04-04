@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -70,6 +70,11 @@ namespace Boites
         public IEnumerator<string> GetEnumerator() => Enumerator;
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public void Accepter(IVisiteur<IBoite> viz)
+        {
+            throw new NotImplementedException();
+        }
 
         //public IBoite Redimensionner(int largeur, int hauteur)
         //{

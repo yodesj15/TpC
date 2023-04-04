@@ -254,6 +254,11 @@ namespace Boites
         //}
 
         public IBoite Cloner(IBoite b) => new ComboHorizontal(b);
+        
+         public void Accepter(IVisiteur<IBoite> viz)
+        {
+            throw new NotImplementedException();
+        }
         //IEnumerator<string> IEnumerable<string>.GetEnumerator()
         //{
         //    throw new NotImplementedException();

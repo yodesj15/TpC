@@ -52,6 +52,16 @@ using Boites;
 //Console.WriteLine(
 //   new Boite(new ComboVertical(new Boite(), new Boite("Yap")))
 //);
+//var p = new FabriqueBoites().Creer("mono J'aime mon \"prof\"");
+//Console.WriteLine(p);
+//p = new FabriqueBoites().Creer("cv\nmono J'aime mon \"prof\"\nmono moi itou");
+//Console.WriteLine(p);
+//p = new FabriqueBoites().Creer("ch\nmono J'aime mon \"prof\"\nmono moi itou");
+//Console.WriteLine(p);
+//p = new FabriqueBoites().Creer(
+//   "ch\nmono J'aime mon \"prof\"\ncv\nmono moi itou\nmono eh ben");
+//Console.WriteLine(p);
+////p = new FabriqueBoites().Creer("ch\ncv\nmc\nmono J'aime mon \"prof\"\nmono moi itou\nmono eh ben");
 
 var p = new FabriqueBoites().Creer("ch\nmono J'aime mon \"prof\"\nmono moi itou\nmono eh ben");
 Console.Write(p);
