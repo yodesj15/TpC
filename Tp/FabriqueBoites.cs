@@ -13,6 +13,8 @@ namespace Boites
     {
         private static char[] separators = new char[] { '\n', '\r' };
 
+        public FabriqueBoites() { }
+
         internal Boite Creer(string flux)
         {
             string[] tempTab = flux.Split(separators);
@@ -72,7 +74,6 @@ namespace Boites
             else if (typeBoite == "ch")
                 return new ComboHorizontal(boites[0], boites[1]);
 
-            throw new InvalidComboTypeException();
         }
     }
 }
