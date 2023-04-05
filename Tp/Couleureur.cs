@@ -6,15 +6,21 @@ using System.Threading.Tasks;
 
 namespace Boites
 {
-    class Couleureur :IVisiteur<IBoite>
+    class Couleureur : IVisiteur<IBoite>
     {
-        public Couleureur() { } 
-        public void Entrer() { Console.WriteLine("Entre c"); }
-        public void Sortir() { Console.WriteLine("Sort c"); }
-        public void Visiter(IBoite p , Action opt)
+        public Couleureur() { }
+        public void Entrer()
         {
-            Console.Write("... je visite c");
-            opt();
+            Console.ForegroundColor = ConsoleColor.Blue;
+        }
+        public void Sortir()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        public void Visiter(IBoite p, Action opt)
+        {
+            Console.Write("");
+            //opt();
         }
 
     }
