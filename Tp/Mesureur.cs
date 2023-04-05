@@ -15,13 +15,16 @@ namespace Boites
         }
         public void Sortir()
         {
-            Console.WriteLine("Sort m ");
+            Console.ForegroundColor = ConsoleColor.White;
+            //Console.WriteLine("Sort m ");
         }
         public void Visiter(IBoite p, Action opt)
         {
 
             opt();
-            Console.WriteLine($"  {p.Hauteur} x {p.Largeur} ");
+           
+            p.Accepter(this);
+            //Console.WriteLine($"  {p.Hauteur} x {p.Largeur} ");
         }
     }
 }

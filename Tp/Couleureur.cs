@@ -15,11 +15,12 @@ namespace Boites
         }
         public void Sortir()
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            //Console.ForegroundColor = ConsoleColor.White;
         }
         public void Visiter(IBoite p, Action opt)
         {
-            Console.Write("");
+            
+            //Console.Write("");
             //opt();
         }
 

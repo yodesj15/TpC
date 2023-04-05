@@ -257,8 +257,8 @@ namespace Boites
         
          public void Accepter(IVisiteur<IBoite> viz)
         {
-            //throw new NotImplementedException();
-            Console.WriteLine("ch");
+            Console.WriteLine("     Boite");
+            Console.WriteLine($"      {Hauteur} x {Largeur} ");
         }
         //IEnumerator<string> IEnumerable<string>.GetEnumerator()
         //{
