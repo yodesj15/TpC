@@ -75,7 +75,8 @@ namespace Boites
         {
 
             //viz.Entrer();
-            Console.WriteLine($"      {Hauteur} x {Largeur} ");
+            Console.WriteLine();
+            Console.WriteLine($"       {Hauteur} x {Largeur} ");
             //viz.Sortir();
         }
 
