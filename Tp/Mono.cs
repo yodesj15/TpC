@@ -73,7 +73,11 @@ namespace Boites
 
         public void Accepter(IVisiteur<IBoite> viz)
         {
-            throw new NotImplementedException();
+
+            //viz.Entrer();
+            Console.WriteLine();
+            Console.WriteLine($"       {Hauteur} x {Largeur} ");
+            //viz.Sortir();
         }
 
         //public IBoite Redimensionner(int largeur, int hauteur)

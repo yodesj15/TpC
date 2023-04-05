@@ -115,8 +115,10 @@ namespace Boites
         public void Accepter(IVisiteur<IBoite> viz)
         {
             viz.Entrer();
-            Action a = delegate() { Console.WriteLine("allo"); };
+            
+            Action a = delegate() { Console.Write("   "+ IB.ToString().Substring(7)); };
             viz.Visiter(IB, a);
+            
             viz.Sortir();
         }
     }

@@ -91,7 +91,15 @@ namespace Boites
         
          public void Accepter(IVisiteur<IBoite> viz)
         {
-            throw new NotImplementedException();
+
+            //Action a = delegate () { Console.Write("   " + ToString().Substring(7)); };
+            //viz.Entrer();
+            //viz.Visiter(this, a);
+            //viz.Sortir(); 
+            Console.WriteLine();
+            Console.WriteLine("     Boite");
+            Console.WriteLine($"       {Hauteur} x {Largeur} ");
+
         }
 
 
