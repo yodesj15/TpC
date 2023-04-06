@@ -34,6 +34,10 @@ namespace Boites
             IB = boite.Cloner();
             //IB = boite.Redimensionner(IB.Largeur, IB.Hauteur);
             enumerator = boite.GetEnumerator();
+
+            if(enumerator != null)
+                enumerator.Reset();
+
             ListeMots = IB.lst;
         }
 
@@ -83,6 +87,7 @@ namespace Boites
 
             if (enumerator != null)
             {
+           
                 enumerator.MoveNext();
                 do
                 {
