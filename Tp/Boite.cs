@@ -31,7 +31,7 @@ namespace Boites
 
         public Boite(IBoite boite)
         {
-            IB = boite.Cloner(boite);
+            IB = boite.Cloner();
             //IB = boite.Redimensionner(IB.Largeur, IB.Hauteur);
             enumerator = boite.GetEnumerator();
             ListeMots = IB.lst;
@@ -116,8 +116,8 @@ namespace Boites
         {
             viz.Entrer();
             
-            Action a = delegate() { Console.Write("   "+ IB.ToString().Substring(7)); };
-            viz.Visiter(IB, a);
+            //Action a = delegate() { Console.Write("   "+ IB.ToString().Substring(7)); };
+            viz.Visiter(IB, () => { Console.Write("   " + IB.ToString().Substring(7)); });
             
             viz.Sortir();
         }

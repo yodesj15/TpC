@@ -87,9 +87,9 @@ namespace Boites
         //    return this;
         //}
 
-        public IBoite Cloner(IBoite b) => new ComboVertical(b);
+        public IBoite Cloner() => new ComboVertical(this);
         
-         public void Accepter(IVisiteur<IBoite> viz)
+        public void Accepter(IVisiteur<IBoite> viz)
         {
 
             //Action a = delegate () { Console.Write("   " + ToString().Substring(7)); };

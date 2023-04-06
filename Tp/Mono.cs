@@ -45,7 +45,7 @@ namespace Boites
             Enumerator = bt.Enumerator;
         }
 
-        public IBoite Cloner(IBoite b) => new Mono(b);
+        public IBoite Cloner() => new Mono(this);
 
         //public override string ToString()   
         //{

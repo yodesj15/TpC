@@ -253,9 +253,9 @@ namespace Boites
         //    return this;
         //}
 
-        public IBoite Cloner(IBoite b) => new ComboHorizontal(b);
+        public IBoite Cloner() => new ComboHorizontal(this);
         
-         public void Accepter(IVisiteur<IBoite> viz)
+        public void Accepter(IVisiteur<IBoite> viz)
         {
             Console.WriteLine();
             Console.WriteLine("     Boite");

@@ -8,10 +8,12 @@ namespace Boites
 {
     class Couleureur : IVisiteur<IBoite>
     {
+        private List<ConsoleColor> LstCouleur = new() { ConsoleColor.Blue, ConsoleColor.Green, ConsoleColor.Red, ConsoleColor.Yellow };
         public Couleureur() { }
         public void Entrer()
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Random rdm = new Random();
+            Console.ForegroundColor = LstCouleur[rdm.Next(LstCouleur.Count)];
         }
         public void Sortir()
         {
@@ -19,7 +21,6 @@ namespace Boites
         }
         public void Visiter(IBoite p, Action opt)
         {
-            
             //Console.Write("");
             //opt();
         }

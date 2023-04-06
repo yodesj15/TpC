@@ -14,6 +14,6 @@ namespace Boites
         int Hauteur { get; }
         IEnumerator<string> Enumerator { get; }
         List<string> lst { get; }
-        IBoite Cloner(IBoite b);
+        IBoite Cloner();
     }
 }

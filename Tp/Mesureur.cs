@@ -8,6 +8,10 @@ namespace Boites
 {
     class Mesureur : IVisiteur<IBoite>
     {
+        public Boite PlusPetite;
+        public Boite PlusGrande;
+        private int airePlusGrande = 0;
+        private int airePlusPetite = int.MaxValue;
         public Mesureur() { }
         public void Entrer()
         {
@@ -20,6 +24,18 @@ namespace Boites
         }
         public void Visiter(IBoite p, Action opt)
         {
+            int currentAire = p.Hauteur * p.Largeur;
+            if(currentAire > airePlusGrande)
+            {
+                airePlusGrande = currentAire;
+                PlusGrande = new Boite(p);
+            }
+
+            if (currentAire < airePlusPetite)
+            {
+                airePlusPetite = currentAire;
+                PlusPetite = new Boite(p);
+            }
 
             opt();
            
