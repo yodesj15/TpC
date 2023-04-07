@@ -44,7 +44,6 @@ namespace Boites
         {
             Largeur = bt.Largeur;
             Hauteur = bt.Hauteur;
-            Enumerator = bt.Enumerator;
         }
 
         public IBoite Cloner() => new Mono(this);

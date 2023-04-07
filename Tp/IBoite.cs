@@ -9,7 +9,6 @@ namespace Boites
 {
     interface IBoite : IEnumerable<string>,IVisitable<IBoite>
     {
-        //IBoite Redimensionner(int largeur, int hauteur);
         int Largeur { get; }
         int Hauteur { get; }
         IEnumerator<string> Enumerator { get; }

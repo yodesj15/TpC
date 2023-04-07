@@ -15,43 +15,42 @@ namespace Boites
 
         private char[] separators = new char[] { '\n', '\r' };
 
-        public List<string> ListeMots { get; init; }
+        public List<string> contenu { get; init; }
 
-        IBoite IB { get; init; }
+        public IBoite IB { get; init; }
 
         public Boite(string msg)
         {
             Message = msg;
-            ListeMots = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
-            enumerator = ListeMots.GetEnumerator();
+            contenu = Message.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
+            enumerator = contenu.GetEnumerator();
 
-            IB = new Mono(ListeMots.Max(str => str.Length), ListeMots.Count);
+            IB = new Mono(contenu.Max(str => str.Length), contenu.Count);
 
         }
 
         public Boite(Boite boite)
         {
             Message = boite.Message;
-            ListeMots = boite.ListeMots;
+            contenu = boite.contenu;
             enumerator = boite.GetEnumerator();
             IB = boite.IB;
         }
         public Boite(IBoite boite)
         {
             IB = boite.Cloner();
-            //IB = boite.Redimensionner(IB.Largeur, IB.Hauteur);
             enumerator = boite.GetEnumerator();
 
             if(enumerator != null)
                 enumerator.Reset();
 
-            ListeMots = IB.lst;
+            contenu = IB.lst;
         }
 
         public Boite()
         {
-            ListeMots = new List<string>() { Message };
-            enumerator = ListeMots.GetEnumerator();
+            contenu = new List<string>() { Message };
+            enumerator = contenu.GetEnumerator();
             IB = new Mono();
         }
 
@@ -61,38 +60,6 @@ namespace Boites
         {
             string header = '+' + new string('-', IB.Largeur) + '+';
             string messageFinal = header + "\n";
-
-            // Marche en debug
-            //if (ListeMots != null)
-            //{
-            //    foreach (string s in ListeMots)
-            //    {
-            //        if (s != "")
-            //        {
-            //            if (s.Contains('-') && s.Length < IB.Largeur)
-            //            {
-            //                int nb = IB.Largeur - s.Length;
-
-            //                messageFinal += $"|{new string('-', nb)}|" + "\n";
-
-            //            }
-            //            if (s.Length < IB.Largeur)
-            //            {
-            //                int nb = IB.Largeur - s.Length;
-            //                messageFinal += $"|{s}" + new string(' ', nb) + "|\n";
-
-            //            }
-            //            else
-            //            {
-            //                messageFinal += $"|{s}|" + "\n";
-
-            //            }
-
-            //        }
-
-
-            //    }
-            //}
 
             if (enumerator != null)
             {
@@ -130,7 +97,6 @@ namespace Boites
         {
             viz.Entrer();
             
-            //Action a = delegate() { Console.Write("   "+ IB.ToString().Substring(7)); };
             viz.Visiter(IB, () => { Console.Write("   " + IB.ToString().Substring(7)); });
             
             viz.Sortir();

@@ -13,28 +13,17 @@ namespace Boites
         public int Hauteur { get; private set; } = 0;
 
         public List<string> lst { get; init; } = new List<string>();
-
         public IEnumerator<string> Enumerator { get; init; }
 
         public Boite BoiteCombo1 { get; init; }
         public Boite BoiteCombo2 { get; init; }
 
-        //public List<string> Liste { get; private set; } = new List<string>();
-
-
-
-        //public string Message { get; private set; } = "";
-
-        //public List<Boite> lstBts { get; set; } = new List<Boite>();
-
-        //public IEnumerateur<string> GetEnumerateur() => new Enumerateur(lstBts[0], lstBts[1]);
         public ComboHorizontal(IBoite boite)
         {
             Hauteur = boite.Hauteur;
             Largeur = boite.Largeur;
-            Enumerator = boite.GetEnumerator();
             lst = boite.lst;
-
+            Enumerator = boite.Enumerator;
             BoiteCombo1= boite.BoiteCombo1;
             BoiteCombo2 = boite.BoiteCombo2;
 
@@ -42,22 +31,20 @@ namespace Boites
         public ComboHorizontal(Boite ba, Boite bb)
         {
 
-            Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
+            Hauteur = Math.Max(ba.contenu.Count(), bb.contenu.Count());
 
-            Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length) + 1;
+            Largeur = ba.contenu.Max(str => str.Length) + bb.contenu.Max(str => str.Length);
 
 
-            if (ContientCombo(ba.ListeMots) || ContientCombo(bb.ListeMots))
+            if (ContientCombo(ba.contenu) || ContientCombo(bb.contenu))
             {
-                lst = RedimensionnerListe(GetComboList(ba.ListeMots, bb.ListeMots));
+                lst = ModifierListe(GetComboList(ba.contenu, bb.contenu));
                 Enumerator = lst.GetEnumerator();
-
             }
             else
             {
-                lst = GetComboList(ba.ListeMots, bb.ListeMots);
+                lst = GetComboList(ba.contenu, bb.contenu);
                 Enumerator = lst.GetEnumerator();
-
             }
 
             BoiteCombo1 = ba.Cloner();
@@ -151,40 +138,7 @@ namespace Boites
             return max;
         }
 
-
-        //private List<string> EditList(List<string> lstBa, List<string> lstBb)
-        //{
-        //    List<string> tempLst = new List<string>();
-        //    for (int i = 0; i < lstBa.Count; i++)
-        //    {
-        //        int nb = lstBa.Max(str => str.Length) - lstBa[i].Length;
-        //        string str = lstBa[i] + new string(' ', nb);
-
-        //        if (lstBa[i] != "" /*|| lstBa[i] != ""*/)
-        //            str += '|';
-        //        tempLst.Add(str);
-
-        //    }
-
-        //    for (int i = 0; i < tempLst.Count; i++)
-        //    {
-        //        if (i < lstBb.Count)
-        //        {
-        //            int nb = lstBb.Max(str => str.Length) - lstBb[i].Length;
-        //            tempLst[i] += lstBb[i] + new string(' ', nb);
-
-        //        }
-        //        else
-        //            tempLst[i] += new string(' ', lstBb.Max(str => str.Length));
-
-        //    }
-
-
-
-        //    return tempLst;
-        //}
-
-        private List<string> RedimensionnerListe(List<string> lstA)
+        private List<string> ModifierListe(List<string> lstA)
         {
             List<string> tempLst = new List<string>();
 
@@ -215,7 +169,7 @@ namespace Boites
 
         }
 
-        public IEnumerator<string> GetEnumerator() => Enumerator;
+        public IEnumerator<string> GetEnumerator() => lst.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
@@ -224,13 +178,12 @@ namespace Boites
         public void Accepter(IVisiteur<IBoite> viz)
         {
             Console.WriteLine();
-            if (BoiteCombo1.ListeMots.Count() > 0 && BoiteCombo1.ListeMots.Count() > 0)
+            if (BoiteCombo1.contenu.Count() > 0 && BoiteCombo2.contenu.Count() > 0)
             {
-                Console.WriteLine($"        Mono {Hauteur} x {BoiteCombo1.ListeMots.Max(str => str.Length)}");
-                Console.WriteLine($"        Mono {Hauteur} x {BoiteCombo2.ListeMots.Max(str => str.Length)}");
+                Console.WriteLine($"        Mono {Hauteur} x {BoiteCombo1.contenu.Max(str => str.Length)}");
+                Console.WriteLine($"        Mono {Hauteur} x {BoiteCombo2.contenu.Max(str => str.Length)}");
 
             }
-            //Console.WriteLine($"       {Hauteur} x {Largeur} ");
         }
     }
 }

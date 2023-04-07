@@ -13,27 +13,24 @@ namespace Boites
 
         public int Hauteur { get; private set; } = 0;
 
-        //private int Espace { get; set; }
-        //public string Message { get; private set; } = "";
-
         public List<string> lst { get; init; } = new List<string>();
-
         public IEnumerator<string> Enumerator { get; init; }
+
         public Boite BoiteCombo1 { get; init; }
         public Boite BoiteCombo2 { get; init; }
 
         public ComboVertical(Boite ba, Boite bb)
         {
-            Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
-            Largeur = Math.Max(ba.ListeMots.Max(str => str.Length) , bb.ListeMots.Max(str => str.Length));
+            Hauteur = Math.Max(ba.contenu.Count(), bb.contenu.Count());
+            Largeur = Math.Max(ba.contenu.Max(str => str.Length) , bb.contenu.Max(str => str.Length));
 
             List<string> tempLst = new();
-            tempLst.AddRange(RedimensionnerListe(ba.ListeMots));
+            tempLst.AddRange(RedimensionnerListe(ba.contenu));
             tempLst.Add(new string('-', Largeur));
-            tempLst.AddRange(RedimensionnerListe(bb.ListeMots));
-            Enumerator = tempLst.GetEnumerator();
+            tempLst.AddRange(RedimensionnerListe(bb.contenu));
 
             lst = tempLst;
+            Enumerator = lst.GetEnumerator();
 
             BoiteCombo1 = ba.Cloner();
             BoiteCombo2 = bb.Cloner();
@@ -43,8 +40,8 @@ namespace Boites
         {
             Hauteur = boite.Hauteur;
             Largeur = boite.Largeur;
-            Enumerator = boite.Enumerator;
             lst = boite.lst;
+            Enumerator = boite.Enumerator;
             BoiteCombo1 = boite.BoiteCombo1;
             BoiteCombo2 = boite.BoiteCombo2;
         }
@@ -63,81 +60,25 @@ namespace Boites
             }
             return tempLst;
         }
-        //public ComboVertical(IBoite boiteA, IBoite boiteB)
-        //{
-        //    Hauteur = Math.Max(boiteA.lst.Count(), boiteB.lst.Count());
-        //    Largeur = Math.Max(boiteA.lst.Max(str => str.Length), boiteB.lst.Max(str => str.Length));
-            
-        //    //Hauteur = boite.Hauteur;
-        //    //Largeur = boite.Largeur;
-        //    //lst = boite.lst;
-        //}
-        /*public IBoite.Enumerateur GetEnumerateur()
-        {
-            return new IBoite.Enumerateur(new Boite(this));
-        }*/
 
         public IEnumerator<string> GetEnumerator() => Enumerator;
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-        //public IBoite Redimensionner(int largeur, int hauteur)
-        //{
-        //    Largeur = largeur; 
-        //    Hauteur = hauteur;
-
-        //    return this;
-        //}
 
         public IBoite Cloner() => new ComboVertical(this);
         
         public void Accepter(IVisiteur<IBoite> viz)
         {
 
-            //Action a = delegate () { Console.Write("   " + ToString().Substring(7)); };
-            //viz.Entrer();
-            //viz.Visiter(this, a);
-            //viz.Sortir(); 
             Console.WriteLine();
-            if (BoiteCombo1.ListeMots.Count() > 0 && BoiteCombo1.ListeMots.Count() > 0)
+            if (BoiteCombo1.contenu.Count() > 0 && BoiteCombo2.contenu.Count() > 0)
             {
-                Console.WriteLine($"        Mono {BoiteCombo1.ListeMots.Count()} x {Largeur}");
-                Console.WriteLine($"        Mono {BoiteCombo2.ListeMots.Count()} x {Largeur}");
+                Console.WriteLine($"        Mono {BoiteCombo1.contenu.Count()} x {Largeur}");
+                Console.WriteLine($"        Mono {BoiteCombo2.contenu.Count()} x {Largeur}");
 
             }
 
         }
 
-
-        //class Enumerateur : IEnumerateur<string>
-        //{
-        //    //public Boite Cur { get; set; }
-
-        //    public IEnumerator<string> enuGauche, enuDroite;
-
-        //    public string Current => enuGauche.Current + '|' + enuDroite.Current;
-        //    object IEnumerator.Current => throw new NotImplementedException();
-
-        //    /*public bool HasNext => Cur.Succ == Queue;*/
-
-        //    public Enumerateur(Boite ba, Boite bb)
-        //    {
-        //        enuGauche = ba.ListeMots.GetEnumerator();
-        //        enuDroite = bb.ListeMots.GetEnumerator();
-        //    }
-
-        //    public bool MoveNext()
-        //    {
-        //        /*if (Cur.Succ == null)
-        //            return false;
-        //        Cur = Cur.Succ;
-        //        return true;*/
-        //        return false;
-        //    }
-
-        //    public void Reset() => throw new NotImplementedException();
-
-        //    public void Dispose() { }
-        //}
-    }
+     }
 }
