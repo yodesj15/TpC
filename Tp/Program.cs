@@ -99,7 +99,7 @@ multiligne";
     //), coul, mes);
     //Console.WriteLine($"\n\nLa plus petite boite est :\n{mes.PlusPetite}");
     //Console.WriteLine($"\n\nLa plus grande boite est :\n{mes.PlusGrande}");
-    Console.WriteLine(mes.PlusPetite);
+    //Console.WriteLine(mes.PlusPetite);
     Console.WriteLine(mes.PlusGrande);
 }
 

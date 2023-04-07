@@ -16,6 +16,8 @@ namespace Boites
         public int Hauteur { get; private set; } = 0;
 
         public List<string> lst { get; set; }
+        public Boite BoiteCombo1 { get; init; }
+        public Boite BoiteCombo2 { get; init; }
 
         public IEnumerator<string> Enumerator { get; init; }
 

@@ -8,23 +8,23 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\acarl\\.nuget\\packages\\": {},
+    "C:\\Users\\yoan7\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\acarl\\source\\repos\\TpC\\Tp\\Boites.csproj",
+      "projectUniqueName": "C:\\Users\\yoan7\\Source\\Repos\\TpC3\\Tp\\Boites.csproj",
       "projectName": "Boites",
-      "projectPath": "C:\\Users\\acarl\\source\\repos\\TpC\\Tp\\Boites.csproj",
-      "packagesPath": "C:\\Users\\acarl\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\acarl\\source\\repos\\TpC\\Tp\\obj\\",
+      "projectPath": "C:\\Users\\yoan7\\Source\\Repos\\TpC3\\Tp\\Boites.csproj",
+      "packagesPath": "C:\\Users\\yoan7\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\yoan7\\Source\\Repos\\TpC3\\Tp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\acarl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\yoan7\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -33,7 +33,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -67,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
