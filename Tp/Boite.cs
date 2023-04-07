@@ -29,6 +29,13 @@ namespace Boites
 
         }
 
+        public Boite(Boite boite)
+        {
+            Message = boite.Message;
+            ListeMots = boite.ListeMots;
+            enumerator = boite.GetEnumerator();
+            IB = boite.IB;
+        }
         public Boite(IBoite boite)
         {
             IB = boite.Cloner();
@@ -47,6 +54,8 @@ namespace Boites
             enumerator = ListeMots.GetEnumerator();
             IB = new Mono();
         }
+
+        public Boite Cloner() => new Boite(this);
 
         public override string ToString()
         {

@@ -16,6 +16,9 @@ namespace Boites
 
         public IEnumerator<string> Enumerator { get; init; }
 
+        public Boite BoiteCombo1 { get; init; }
+        public Boite BoiteCombo2 { get; init; }
+
         //public List<string> Liste { get; private set; } = new List<string>();
 
 
@@ -31,32 +34,16 @@ namespace Boites
             Largeur = boite.Largeur;
             Enumerator = boite.GetEnumerator();
             lst = boite.lst;
+
+            BoiteCombo1= boite.BoiteCombo1;
+            BoiteCombo2 = boite.BoiteCombo2;
+
         }
         public ComboHorizontal(Boite ba, Boite bb)
         {
-            //v1
-            //Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
-            //Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length) + 1;
 
-
-            //lst = EditList(ba.ListeMots, bb.ListeMots);
-            //Enumerator = lst.GetEnumerator();
-
-            //v2 
-            //Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
-            //Largeur = ba.ListeMots.Max(str => str.Length)+ bb.ListeMots.Max(str => str.Length);
-
-            //List<string> tempLst = new();
-            //tempLst.AddRange(RedimensionnerListe(ba.ListeMots));
-            ////tempLst.Add(new string('-', Largeur));
-            //tempLst.AddRange(RedimensionnerListe(bb.ListeMots));
-            //Enumerator = tempLst.GetEnumerator();
-
-            //lst = tempLst;
-
-            //v3
             Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
-            
+
             Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length) + 1;
 
 
@@ -73,10 +60,8 @@ namespace Boites
 
             }
 
-            //v4
-            //Hauteur = Math.Max(ba.ListeMots.Count(), bb.ListeMots.Count());
-            //Largeur = ba.ListeMots.Max(str => str.Length) + bb.ListeMots.Max(str => str.Length);
-            //List<string> t = Red(ba.ListeMots,bb.ListeMots);
+            BoiteCombo1 = ba.Cloner();
+            BoiteCombo2 = bb.Cloner();
 
 
         }
@@ -121,7 +106,7 @@ namespace Boites
                     nbEspaceBb = maxLargeurBb - strBb.Length;
 
                 //Gestion boites vides
-                if(string.IsNullOrEmpty(strBa) && string.IsNullOrEmpty(strBb))
+                if (string.IsNullOrEmpty(strBa) && string.IsNullOrEmpty(strBb))
                 {
                     tempLst.Add(strBa + strBb);
                 }
@@ -141,12 +126,12 @@ namespace Boites
             {
                 if (str.Contains('-') || str.Contains('|'))
                     return true;
-                
+
             }
             return false;
         }
 
-        private int NbOccurrenceMots(string str,string occ)
+        private int NbOccurrenceMots(string str, string occ)
         {
             int count;
             count = str.Split(new string[] { occ }, StringSplitOptions.None).Length - 1;
@@ -158,7 +143,7 @@ namespace Boites
             int max = 0;
             foreach (string str in list)
             {
-                if(str.Split(new string[] { occ }, StringSplitOptions.None).Length - 1 > max)
+                if (str.Split(new string[] { occ }, StringSplitOptions.None).Length - 1 > max)
                 {
                     max = str.Split(new string[] { occ }, StringSplitOptions.None).Length - 1;
                 }
@@ -166,7 +151,7 @@ namespace Boites
             return max;
         }
 
-        
+
         //private List<string> EditList(List<string> lstBa, List<string> lstBb)
         //{
         //    List<string> tempLst = new List<string>();
@@ -206,11 +191,11 @@ namespace Boites
             int nbDésiré = NbOccurenceListe(lstA, "|");
             int dernierIndex = 0;
             for (int i = 0; i < lstA.Count; i++)
-            { 
-                if (NbOccurrenceMots(lstA[i], "|") < nbDésiré && i != 0 )
+            {
+                if (NbOccurrenceMots(lstA[i], "|") < nbDésiré && i != 0)
                 {
                     int index = lstA[dernierIndex].LastIndexOf("|");
-                    string newStr = lstA[i].Substring(0, index) + new string('|',nbDésiré - NbOccurrenceMots(lstA[i],"|")) + lstA[i].Substring(index + 1);
+                    string newStr = lstA[i].Substring(0, index) + new string('|', nbDésiré - NbOccurrenceMots(lstA[i], "|")) + lstA[i].Substring(index + 1);
                     tempLst.Add(newStr);
                 }
                 else
@@ -218,100 +203,34 @@ namespace Boites
                     tempLst.Add(lstA[i]);
 
                 }
-                if(i != 0 && NbOccurrenceMots(lstA[i], "|") > nbDésiré)
+                if (i != 0 && NbOccurrenceMots(lstA[i], "|") > nbDésiré)
                 {
 
-                    dernierIndex ++;   
+                    dernierIndex++;
 
                 }
             }
 
             return tempLst;
-            
+
         }
-
-
-        //public override string ToString()
-        //{
-        //    IEnumerateur<string> enumerateur = GetEnumerateur();
-        //    do
-        //    {
-        //        Message += enumerateur.Current;
-        //    } while (enumerateur.MoveNext());
-        //    return Message;
-        //}
 
         public IEnumerator<string> GetEnumerator() => Enumerator;
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        //public IBoite Redimensionner(int largeur, int hauteur)
-        //{
-        //    Largeur = largeur;
-        //    Hauteur = hauteur;
-
-        //    return this;
-        //}
-
         public IBoite Cloner() => new ComboHorizontal(this);
-        
+
         public void Accepter(IVisiteur<IBoite> viz)
         {
             Console.WriteLine();
-            Console.WriteLine("     Boite");
-            Console.WriteLine($"       {Hauteur} x {Largeur} ");
+            if (BoiteCombo1.ListeMots.Count() > 0 && BoiteCombo1.ListeMots.Count() > 0)
+            {
+                Console.WriteLine($"        Mono {Hauteur} x {BoiteCombo1.ListeMots.Max(str => str.Length)}");
+                Console.WriteLine($"        Mono {Hauteur} x {BoiteCombo2.ListeMots.Max(str => str.Length)}");
+
+            }
+            //Console.WriteLine($"       {Hauteur} x {Largeur} ");
         }
-        //IEnumerator<string> IEnumerable<string>.GetEnumerator()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //IEnumerator IEnumerable.GetEnumerator()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        // IEnumerable.GetEnumerator()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        /*public IBoite.Enumerateur GetEnumerateur()
-        {
-            return new IBoite.Enumerateur(new Boite(this));
-        }*/
-
-        //class Enumerateur : IEnumerateur<string>
-        //{
-        //    public Boite Cur { get; set; }
-
-        //    public string Current { get
-        //        {
-        //            string message = null;
-        //            return message;
-        //        } 
-        //    }
-        //    object IEnumerator.Current => throw new NotImplementedException();// --> affiche le message et espace si nécessaire
-
-        //    /*public bool HasNext => Cur.Succ == Queue;*/
-
-        //    public Enumerateur(Boite ba, Boite bb)
-        //    {
-        //        Cur = ba;
-        //        Cur.Succ = bb;
-        //    }
-
-        //    public bool MoveNext()
-        //    {
-        //        if (Cur.Succ == null)
-        //            return false;
-        //        Cur = Cur.Succ;
-        //        return true;
-        //    }
-
-        //    public void Reset() => throw new NotImplementedException();
-
-        //    public void Dispose() { }
-        //}
     }
 }

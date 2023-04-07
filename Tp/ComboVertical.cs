@@ -19,6 +19,8 @@ namespace Boites
         public List<string> lst { get; init; } = new List<string>();
 
         public IEnumerator<string> Enumerator { get; init; }
+        public Boite BoiteCombo1 { get; init; }
+        public Boite BoiteCombo2 { get; init; }
 
         public ComboVertical(Boite ba, Boite bb)
         {
@@ -33,10 +35,8 @@ namespace Boites
 
             lst = tempLst;
 
-            //Ajout des liste de mots dans la liste pour donner le contenu à la boîte
-            //lst.AddRange(RedimensionnerListe(ba.ListeMots));
-            //lst.Add(new string('-', Largeur));
-            //lst.AddRange(RedimensionnerListe(bb.ListeMots));
+            BoiteCombo1 = ba.Cloner();
+            BoiteCombo2 = bb.Cloner();
         }
 
         protected ComboVertical(IBoite boite)
@@ -45,6 +45,8 @@ namespace Boites
             Largeur = boite.Largeur;
             Enumerator = boite.Enumerator;
             lst = boite.lst;
+            BoiteCombo1 = boite.BoiteCombo1;
+            BoiteCombo2 = boite.BoiteCombo2;
         }
 
 
@@ -97,8 +99,12 @@ namespace Boites
             //viz.Visiter(this, a);
             //viz.Sortir(); 
             Console.WriteLine();
-            Console.WriteLine("     Boite");
-            Console.WriteLine($"       {Hauteur} x {Largeur} ");
+            if (BoiteCombo1.ListeMots.Count() > 0 && BoiteCombo1.ListeMots.Count() > 0)
+            {
+                Console.WriteLine($"        Mono {BoiteCombo1.ListeMots.Count()} x {Largeur}");
+                Console.WriteLine($"        Mono {BoiteCombo2.ListeMots.Count()} x {Largeur}");
+
+            }
 
         }
 

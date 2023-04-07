@@ -15,5 +15,7 @@ namespace Boites
         IEnumerator<string> Enumerator { get; }
         List<string> lst { get; }
         IBoite Cloner();
+        Boite BoiteCombo1 { get;  }
+        Boite BoiteCombo2 { get;  }
     }
 }
