@@ -15,15 +15,8 @@ namespace Boites
             Random rdm = new Random();
             Console.ForegroundColor = LstCouleur[rdm.Next(LstCouleur.Count)];
         }
-        public void Sortir()
-        {
-            //Console.ForegroundColor = ConsoleColor.White;
-        }
-        public void Visiter(IBoite p, Action opt)
-        {
-            //Console.Write("");
-            //opt();
-        }
+        public void Sortir() { }
+        public void Visiter(IBoite p, Action opt) { }
 
     }
 }

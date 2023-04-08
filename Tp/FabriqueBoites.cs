@@ -15,7 +15,7 @@ namespace Boites
 
         public FabriqueBoites() { }
 
-        internal Boite Creer(string flux)
+        internal Boite Créer(string flux)
         {
             string[] tempTab = flux.Split(separators);
 

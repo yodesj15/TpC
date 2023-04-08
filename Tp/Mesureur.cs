@@ -12,7 +12,9 @@ namespace Boites
         public Boite PlusGrande;
         private int airePlusGrande = 0;
         private int airePlusPetite = int.MaxValue;
+
         public Mesureur() { }
+
         public void Entrer()
         {
             Console.WriteLine("Boite");
@@ -20,7 +22,6 @@ namespace Boites
         public void Sortir()
         {
             Console.ForegroundColor = ConsoleColor.White;
-            //Console.WriteLine("Sort m ");
         }
         public void Visiter(IBoite p, Action opt)
         {
@@ -40,7 +41,6 @@ namespace Boites
             opt();
            
             p.Accepter(this);
-            //Console.WriteLine($"  {p.Hauteur} x {p.Largeur} ");
         }
     }
 }
