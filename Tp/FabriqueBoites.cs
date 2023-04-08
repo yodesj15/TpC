@@ -30,6 +30,9 @@ namespace Boites
                 case "ch":
                     return new Boite(CreerCombo(tempTab, 1, tempTab[0]));
 
+                case "mc":
+                    throw new BonusNonSupportéException();
+
                 default:
                     return new Boite(tempTab[0].Substring(5));
             }
@@ -58,16 +61,18 @@ namespace Boites
             {
                 if (tab[i].Contains("cv"))
                 {
-                    boites.Add(new Boite( CreerComboVertical(tab, i + 1, i + 2)) );
+                    boites.Add(new Boite(CreerComboVertical(tab, i + 1, i + 2)));
                     i = i + 2;
                 }
                 else if (tab[i].Contains("ch"))
                 {
-                    boites.Add(new Boite( CreerComboHorizontal(tab, i + 1, i + 2)) );
+                    boites.Add(new Boite(CreerComboHorizontal(tab, i + 1, i + 2)));
                     i = i + 2;
                 }
+                else if (tab[i].Contains("ch"))
+                    throw new BonusNonSupportéException();
                 else if (tab[i].Contains("mono"))
-                    boites.Add( new Boite(tab[i].Substring(5)) );
+                    boites.Add(new Boite(tab[i].Substring(5)));
             }
 
             if (typeBoite == "cv")
